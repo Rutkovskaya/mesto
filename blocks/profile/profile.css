@@ -1,0 +1,17 @@
+.profile{
+    margin: 40px auto 0 auto;
+    max-width: 880px;
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+    align-items: center;
+    color: white;
+    font-family: "Inter", Arial, sans-serif;
+}
+
+@media (max-width: 425px) {
+    .profile {
+        grid-template-columns: repeat(1, 1fr);
+        justify-items: center;
+        margin: 42px auto 0 auto;
+    }
+}

@@ -1,0 +1,9 @@
+.profile-info__edit-button{
+    width: 24px;
+    height: 24px;
+    border: white solid 1px;
+    background-position: center;
+    background-size: auto;
+    background-color: #000000;
+    background-image: url(../../../images/Edit_Button.png);
+}
