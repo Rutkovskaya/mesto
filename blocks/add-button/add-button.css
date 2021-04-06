@@ -6,6 +6,8 @@
     border: white solid 1px;
     background-color: #000000;
     background-image: url(../../images/Add_Button.png);
+    background-repeat: no-repeat;
+    
 }
 
 @media (max-width: 425px) {

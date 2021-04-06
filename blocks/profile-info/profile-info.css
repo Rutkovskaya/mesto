@@ -1,9 +1,11 @@
 .profile-info{
-    margin: 0 30px 0 0;
+    margin-left: 30px;
 }
 
 @media (max-width: 425px) {
-    .profile {
-        margin: 26px 0 0 0;
+    .profile-info{
+        margin-left: 0px;
+        margin-top: 26px;
+        margin-bottom: 36px;
     }
 }

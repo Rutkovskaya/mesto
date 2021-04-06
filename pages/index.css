@@ -10,7 +10,9 @@
 @import url(../blocks/profile-info/__status/profile-info__status.css);
 @import url(../blocks/profile-info/__edit-button/profile-info__edit-button.css);
 @import url(../blocks/add-button/add-button.css);
-@import url(../blocks/form/form.css);
-@import url(../blocks/form/__heading/form__heading.css);
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__heading/popup__heading.css);
 @import url(../blocks/input/__text/input__text.css);
-@import url(../blocks/form/__submit-btn/form__submit-btn.css);
+@import url(../blocks/popup/__submit-btn/popup__submit-btn.css);
+@import url(../blocks/popup/__container/popup__container.css);

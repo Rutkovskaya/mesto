@@ -8,13 +8,10 @@
     <title>Путешествия по России</title>
 </head>
 
-
 <body class="page">
     <header class="header">
         <img src="./images/logo.svg" class="header__logo" alt="Логотип">
     </header>
-
-
 
     <main>
         <section class="profile">
@@ -23,27 +20,27 @@
                 <h1 class="profile-info__name">Жак-Ив Кусто
                     <button class="profile-info__edit-button"></button>
                 </h1>
-
-
-                <div class="form">
-                    <h2 class="form__heading">Редактировать профиль</h2>
-                    <input type="text" placeholder="Жак-Ив Кусто" class="input__text input__text_type_name">
-                    <input type="text" placeholder="Исследователь океана" class="input__text input__text_type_status">
-                    <button class="form__submit-btn">
-                        Сохранить
-                    </button>
-                </div>
-
-
-
                 <h2 class="profile-info__status">Исследователь океана</h2>
             </div>
             <button class="add-button"></button>
         </section>
 
+        <form class="popup popup_opened">
+            <div class="popup__container">
+                <h2 class="popup__heading">Редактировать профиль</h2>
+                <input type="text" placeholder="Жак-Ив Кусто" class="input__text input__text_type_name">
+                <input type="text" placeholder="Исследователь океана" class="input__text input__text_type_status">
+                <button class="popup__submit-btn">
+                    Сохранить
+                </button>
+            </div>
+        </form>
 
 
-        
+
+
+
+
     </main>
     <footer class="footer">
         <p class="footer__copyright">© 2020. Мария Рутковская</p>
