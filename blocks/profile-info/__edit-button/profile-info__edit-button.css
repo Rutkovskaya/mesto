@@ -8,3 +8,8 @@
     background-color: #000000;
     background-image: url(../../../images/Edit_Button.png);
 }
+
+.profile-info__edit-button:hover{
+    opacity: 0.8;
+    transition: 1s ease-in-out;
+}
