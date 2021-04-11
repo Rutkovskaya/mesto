@@ -30,9 +30,11 @@ function formSubmitHandler(evt) {
 
     nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
+
+    closePopup()
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
+submitButton.addEventListener('click', formSubmitHandler);
 
 
 
