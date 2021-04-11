@@ -15,25 +15,24 @@ function closePopup() {
 
 closeButton.addEventListener('click', closePopup);
 
-
-
 let nameProfile = document.querySelector('.profile-info__name');
-let jobProfilet = document.querySelector('.profile-info__status');
-
-console.log(nameProfile.textContent);
-console.log(jobProfilet.textContent);
-
-// Находим поля формы в DOM
+let jobProfile = document.querySelector('.profile-info__status');
 let nameInput = document.querySelector('.input__text_type_name');
 let jobInput = document.querySelector('.input__text_type_status');
 
-console.log(nameInput.getAttribute('value'));
-console.log(jobInput.getAttribute('value'));
-
 nameInput.setAttribute('value', nameProfile.textContent);
-jobInput.setAttribute('value', jobProfilet.textContent);
+jobInput.setAttribute('value', jobProfile.textContent);
 
+let formElement = document.querySelector('.popup__container');
 
+function formSubmitHandler(evt) {
+    evt.preventDefault();
+
+    nameProfile.textContent = nameInput.value;
+    jobProfile.textContent = jobInput.value;
+}
+
+formElement.addEventListener('submit', formSubmitHandler);
 
 
 
