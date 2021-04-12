@@ -8,6 +8,7 @@
     grid-auto-rows: 361px;
     gap: 17px 20px;
 }
+
 @media (max-width: 880px) {
     .photo-grid {
         margin-top: 36px;
@@ -15,6 +16,7 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
 @media (max-width: 650px) {
     .photo-grid {
         margin-top: 36px;

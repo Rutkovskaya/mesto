@@ -19,7 +19,7 @@
 
 .popup__submit-btn:focus {
     outline: none;
-  }
+}
 
 @media (max-width: 425px) {
     .popup__submit-btn {

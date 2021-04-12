@@ -21,7 +21,7 @@
 
 .popup__close-btn:focus {
     outline: none;
-  }
+}
 
 @media (max-width: 425px) {
     .popup__close-btn {
