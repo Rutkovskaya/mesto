@@ -34,7 +34,7 @@ function formSubmitHandler(evt) {
     closePopup()
 }
 
-submitButton.addEventListener('click', formSubmitHandler);
+submitButton.addEventListener('submit', formSubmitHandler);
 
 
 
