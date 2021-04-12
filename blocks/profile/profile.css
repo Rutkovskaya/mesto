@@ -8,7 +8,7 @@
     font-family: "Inter", Arial, sans-serif;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 880px) {
     .profile {
         grid-template-columns: repeat(1, 1fr);
         justify-items: center;

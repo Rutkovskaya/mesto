@@ -5,7 +5,7 @@
     margin: 0;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 880px) {
     .profile-info__name {
         font-weight: 500;
         font-size: 27px;

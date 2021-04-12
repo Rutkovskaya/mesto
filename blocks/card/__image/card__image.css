@@ -1,0 +1,6 @@
+.card__image{
+    height: 282px;
+    background-position: center;
+    overflow: hidden;
+    border-radius: 10px 10px 0px 0px;
+}

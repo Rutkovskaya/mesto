@@ -6,7 +6,7 @@
     margin: 16px 0 0 0;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 880px) {
     .profile-info__status {
         margin: 14px 0 0 0;
         font-size: 14px;

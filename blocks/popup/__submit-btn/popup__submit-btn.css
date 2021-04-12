@@ -7,12 +7,19 @@
     font-size: 18px;
     line-height: 22px;
     text-align: center;
+    cursor: pointer;
+    padding: 0;
+    border: none;
 }
 
 .popup__submit-btn:hover {
     opacity: 0.8;
     transition: 1s ease-in-out;
 }
+
+.popup__submit-btn:focus {
+    outline: none;
+  }
 
 @media (max-width: 425px) {
     .popup__submit-btn {

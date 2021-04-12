@@ -7,6 +7,11 @@
     background-image: url(../../../images/Close_Icon.png);
     background-repeat: no-repeat;
     position: absolute;
+    top: -40px;
+    right: -40px;
+    cursor: pointer;
+    padding: 0;
+    border: none;
 }
 
 .popup__close-btn:hover {
@@ -14,7 +19,15 @@
     transition: 1s ease-in-out;
 }
 
+.popup__close-btn:focus {
+    outline: none;
+  }
+
 @media (max-width: 425px) {
     .popup__close-btn {
+        width: 26px;
+        height: 26px;
+        top: -40px;
+        right: 0;
     }
 }

@@ -1,4 +1,4 @@
-.profile-info__edit-button{
+.profile-info__edit-button {
     width: 24px;
     height: 24px;
     border: white solid 1px;
@@ -7,9 +7,15 @@
     background-size: auto;
     background-color: #000000;
     background-image: url(../../../images/Edit_Button.png);
+    cursor: pointer;
+    padding: 0;
 }
 
-.profile-info__edit-button:hover{
+.profile-info__edit-button:hover {
     opacity: 0.8;
     transition: 1s ease-in-out;
 }
+
+.profile-info__edit-button:focus {
+    outline: none;
+  }
