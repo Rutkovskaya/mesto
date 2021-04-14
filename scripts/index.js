@@ -17,8 +17,8 @@ closeButton.addEventListener('click', closePopup);
 
 let nameProfile = document.querySelector('.profile-info__name');
 let jobProfile = document.querySelector('.profile-info__status');
-let nameInput = document.querySelector('.input__text_type_name');
-let jobInput = document.querySelector('.input__text_type_status');
+let nameInput = document.querySelector('.popup__text_type_name');
+let jobInput = document.querySelector('.popup__text_type_status');
 
 nameInput.setAttribute('value', nameProfile.textContent);
 jobInput.setAttribute('value', jobProfile.textContent);

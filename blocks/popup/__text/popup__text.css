@@ -1,4 +1,4 @@
-.input__text {
+.popup__text {
     font-size: 14px;
     line-height: 17px;
     margin: 30px 36px 0 36px;
@@ -8,13 +8,13 @@
     outline: none;
 }
 
-.input__text:focus {
+.popup__text:focus {
     border-bottom: 1px solid #000000;
     outline: none;
 }
 
 @media (max-width: 425px) {
-    .input__text {
+    .popup__text {
         margin: 30px 22px 0 22px;
     }
 }
