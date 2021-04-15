@@ -9,6 +9,7 @@
     background-image: url(../../../images/Edit_Button.png);
     cursor: pointer;
     padding: 0;
+    margin-left: 18px;
 }
 
 .profile-info__edit-button:hover {
