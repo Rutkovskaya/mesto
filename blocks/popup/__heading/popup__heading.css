@@ -9,10 +9,8 @@
 
 @media (max-width: 425px) {
     .popup__heading {
-        font-weight: 900;
         font-size: 18px;
         line-height: 22px;
         margin: 25px 22px 45px 22px;
-        color: black;
     }
 }

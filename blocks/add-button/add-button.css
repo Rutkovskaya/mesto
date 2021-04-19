@@ -3,7 +3,8 @@
     height: 50px;
     background-position: center;
     background-size: auto;
-    border: white solid 1px;
+    border: white solid 2px;
+    border-radius: 2px;
     background-color: #000000;
     background-image: url(../../images/Add_Button.png);
     background-repeat: no-repeat;
@@ -12,7 +13,7 @@
 }
 
 .add-button:hover {
-    opacity: 0.8;
+    opacity: 0.6;
     transition: 1s ease-in-out;
 }
 

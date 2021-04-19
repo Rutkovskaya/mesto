@@ -12,10 +12,11 @@
     cursor: pointer;
     padding: 0;
     border: none;
+    transform: rotate(-45deg);
 }
 
 .popup__close-btn:hover {
-    opacity: 0.8;
+    opacity: 0.6;
     transition: 1s ease-in-out;
 }
 
@@ -27,7 +28,6 @@
     .popup__close-btn {
         width: 26px;
         height: 26px;
-        top: -40px;
         right: 0;
     }
 }
