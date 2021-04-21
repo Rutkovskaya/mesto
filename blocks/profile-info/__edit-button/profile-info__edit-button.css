@@ -6,7 +6,7 @@
     background-repeat: no-repeat;
     background-size: auto;
     background-color: #000000;
-    background-image: url(../../../images/Edit_Button.png);
+    background-image: url(../../../images/Edit_Button.svg);
     cursor: pointer;
     padding: 0;
     margin-left: 18px;
@@ -19,4 +19,12 @@
 
 .profile-info__edit-button:focus {
     outline: none;
+}
+
+@media (max-width: 880px) {
+    .profile-info__edit-button {
+        width: 18px;
+        height: 18px;
+        margin-left: 10px;
+    }
 }

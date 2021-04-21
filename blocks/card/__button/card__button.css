@@ -1,0 +1,6 @@
+.card__button {
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    background-color: white;
+}

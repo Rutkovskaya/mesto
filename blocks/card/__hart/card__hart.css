@@ -1,6 +1,7 @@
 .card__hart {
     width: 22px;
     height: 19px;
+    background-color: white;
 }
 
 .card__hart:hover {
