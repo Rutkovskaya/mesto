@@ -25,6 +25,12 @@
 @import url(../blocks/card/__under-line/card__under-line.css);
 @import url(../blocks/card/__text/card__text.css);
 @import url(../blocks/card/__button/card__button.css);
-@import url(../blocks/card/__hart/card__hart.css);
+
+@import url(../blocks/hart-button/hart-button.css);
+@import url(../blocks/hart-button/_activ/hart-button_activ.css);
+@import url(../blocks/trash-button/trash-button.css);
+@import url(../blocks/view-card/__image/view-card__image.css);
+@import url(../blocks/view-card/__heading/view-card__heading.css);
+@import url(../blocks/view-card/__container/view-card__container.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);

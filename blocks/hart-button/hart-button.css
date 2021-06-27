@@ -1,10 +1,10 @@
-.card__hart {
+.hart-button {
     width: 22px;
     height: 19px;
-    background-color: white;
+    background-image: url(../../images/hart.svg);
 }
 
-.card__hart:hover {
+.hart-button:hover {
     opacity: 0.5;
     transition: 1s ease-in-out;
 }

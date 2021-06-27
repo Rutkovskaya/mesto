@@ -28,7 +28,7 @@
 
         <div class="popup">
             <div class="popup__container">
-                <button type="reset" class="popup__close-btn"></button>
+                <button type="reset" class="popup__close-btn popup__close-btn_profile"></button>
                 <h2 class="popup__heading">Редактировать профиль</h2>
                 <form name="form" class="form">
                     <input name="Name" type="text" placeholder="Имя" value="Невведённое имя"
@@ -42,58 +42,44 @@
             </div>
         </div>
 
+        <div class="popup addcard">
+            <div class="popup__container addcard__container">
+                <button type="reset" class="popup__close-btn popup__close-btn_addcard"></button>
+                <h2 class="popup__heading">Новое место</h2>
+                <form name="form" class="form form__add">
+                    <input name="NamePlace" type="text" placeholder="Название" value=""
+                        class="popup__text popup__text_type_place">
+                    <input name="urlCard" type="url" placeholder="Ссылка на картинку" value=""
+                        class="popup__text popup__text_type_url">
+                    <button type="submit" class="popup__submit-btn">
+                        Создать
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup view-card">
+            <div class="view-card__container">
+                <button type="reset" class="popup__close-btn popup__close-btn_view"></button>
+                <img class="view-card__image" src="" alt="">
+                <h2 class="view-card__heading"></h2>
+            </div>
+        </div>
+
         <section class="photo-grid">
 
-            <article class="card">
-                <img class="card__image" src="./images/karachaevsk.jpg" alt="Картинка">
-                <div class="card__under-line">
-                    <h2 class="card__text">Карачаевск</h2>
-                    <button type="button" class="card__button"><img class="card__hart" src="./images/hart.svg"
-                            alt="Лайк"></button>
-                </div>
-            </article>
-            <article class="card">
-                <img class="card__image" src="./images/ilbrus.png" alt="Картинка">
-                <div class="card__under-line">
-                    <h2 class="card__text">Гора Эльбрус</h2>
-                    <button type="button" class="card__button"><img class="card__hart" src="./images/hart.svg"
-                            alt="Лайк"></button>
-                </div>
-            </article>
-            <article class="card">
-                <img class="card__image" src="./images/dombay.png" alt="Картинка">
-                <div class="card__under-line">
-                    <h2 class="card__text">Домбай</h2>
-                    <button type="button" class="card__button"><img class="card__hart" src="./images/hart.svg"
-                            alt="Лайк"></button>
-                </div>
-            </article>
-            <article class="card">
-                <img class="card__image" src="./images/ilbrus.png" alt="Картинка">
-                <div class="card__under-line">
-                    <h2 class="card__text">Гора Эльбрус</h2>
-                    <button type="button" class="card__button"><img class="card__hart" src="./images/hart.svg"
-                            alt="Лайк"></button>
-                </div>
-            </article>
-            <article class="card">
-                <img class="card__image" src="./images/dombay.png" alt="Картинка">
-                <div class="card__under-line">
-                    <h2 class="card__text">Домбай</h2>
-                    <button type="button" class="card__button"><img class="card__hart" src="./images/hart.svg"
-                            alt="Лайк"></button>
-                </div>
-            </article>
-            <article class="card">
-                <img class="card__image" src="./images/karachaevsk.jpg" alt="Картинка">
-                <div class="card__under-line">
-                    <h2 class="card__text">Карачаевск</h2>
-                    <button type="button" class="card__button"><img class="card__hart" src="./images/hart.svg"
-                            alt="Лайк"></button>
-                </div>
-            </article>
-
         </section>
+
+        <template class="card-template">
+            <article class="card">
+                <button type="button" class=" card__button trash-button"></button>
+                <img class="card__image" src="" alt="">
+                <div class="card__under-line">
+                    <h2 class="card__text"></h2>
+                    <button type="button" class="card__button hart-button"></button>
+                </div>
+            </article>
+        </template>
 
     </main>
     <footer class="footer">
