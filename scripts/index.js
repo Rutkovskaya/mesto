@@ -7,7 +7,7 @@ const nameInput = document.querySelector('.popup__text_type_name');
 const jobInput = document.querySelector('.popup__text_type_status');
 const formElement = document.querySelector('.form');
 const addButton = document.querySelector('.add-button');
-const Card = document.querySelector('.addcard');
+const сard = document.querySelector('.addcard');
 const addcardCloseButton = document.querySelector('.popup__close-btn_addcard');
 const placeInput = document.querySelector('.popup__text_type_place');
 const urlInput = document.querySelector('.popup__text_type_url');
@@ -68,11 +68,16 @@ function createCard(name, link) {
         hartButton.classList.toggle('hart-button_activ');
     });
 
+//function popaupOpened(el){
+
+//}
+
 
     //открыватор карточки
     function view() {
         viewCard.classList.add('popup_opened');
         viewImage.src = selectCard.src;
+        viewImage.alt = selectCard.alt;
         viewHeading.textContent = cardText.textContent;
     }
 
@@ -94,14 +99,14 @@ initialCards.forEach(function (el) {
 
 //Открытие попапа
 function addCard() {
-    Card.classList.add('popup_opened');
+    сard.classList.add('popup_opened');
 }
 
 addButton.addEventListener('click', addCard);
 
 //Закрытие попапа
 function closeAddCard() {
-    Card.classList.remove('popup_opened');
+    сard.classList.remove('popup_opened');
 }
 
 addcardCloseButton.addEventListener('click', closeAddCard);
