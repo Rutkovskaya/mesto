@@ -86,9 +86,6 @@ function createCard(name, link) {
         viewHeading.textContent = cardText.textContent;
     });
 
-    //Закрыватор карточки
-    closeViewCard.addEventListener('click', () => popupСlose(viewCard));
-
     return newCard;
 }
 
@@ -112,6 +109,9 @@ function formSubmitHandler(evt) {
 
     popupСlose(popup);
 }
+
+//Закрыватор карточки
+closeViewCard.addEventListener('click', () => popupСlose(viewCard));
 
 //Открыватор добавление карточки
 addButton.addEventListener('click', () => popupOpened(сard));
