@@ -139,3 +139,5 @@ formElement.addEventListener('submit', formSubmitHandler);
 initialCards.forEach(function (el) {
     cardContainer.append(createCard(el.name, el.link));
 });
+
+//СПАСИБО =)
