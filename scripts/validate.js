@@ -1,5 +1,9 @@
 const showInputError = (inputElement, errorMassage) => {
   console.log(inputElement.name, errorMassage);
+  const formSectionElement = inputElement.closest(".form__section");
+  const errorElement = formSectionElement.querySelector(".popup__text-error");
+  errorElement.textContent = errorMassage;
+  errorElement.classList.add("form__input-error_active");
 }
 
 const hideInputError = (inputElement) => {
@@ -24,13 +28,12 @@ const setEventListeners = (formElement) => {
 
   const inputList = Array.from(formElement.querySelectorAll(".popup__text"));
 
-  console.log(inputList)
 
   inputList.forEach(inputElement => {
     inputElement.addEventListener('input', (event) => {
       console.log(event.target.name);
       checkInputValidity(inputElement);
-      
+
     })
   })
 }

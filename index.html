@@ -31,11 +31,16 @@
                 <button type="reset" class="popup__close-btn popup__close-btn_profile"></button>
                 <h2 class="popup__heading">Редактировать профиль</h2>
                 <form name="form" action="#" method="POST" class="form" novalidate>
-                    <input name="Name" type="text" placeholder="Имя" value="Невведённое имя"
-                        class="popup__text popup__text_type_name" required minlength="2" maxlength="40">
+                    <section class="form__section">
+                        <input name="Name" type="text" placeholder="Имя" value="Невведённое имя"
+                            class="popup__text popup__text_type_name" required minlength="2" maxlength="40">
                         <span class="popup__text-error" id="name-error"></span>
-                    <input name="Status" type="text" placeholder="Статус" value="Невведённый статус"
-                        class="popup__text popup__text_type_status" required minlength="2" maxlength="40">
+                    </section>
+                    <section class="form__section">
+                        <input name="Status" type="text" placeholder="Статус" value="Невведённый статус"
+                            class="popup__text popup__text_type_status" required minlength="2" maxlength="40">
+                        <span class="popup__text-error" id="status-error"></span>
+                    </section>
                     <button type="submit" class="popup__submit-btn">
                         Сохранить
                     </button>

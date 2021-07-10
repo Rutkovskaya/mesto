@@ -2,11 +2,11 @@
     font-family: "Inter", Arial, sans-serif;
     font-size: 14px;
     line-height: 17px;
-    margin: 30px 36px 0 36px;
     height: 27px;
     border: 0;
     border-bottom: 1px solid rgb(0, 0, 0, 0.2);
     outline: none;
+    width: 100%;
 }
 
 .popup__text:focus {
