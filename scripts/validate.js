@@ -1,6 +1,5 @@
 //Показывалка ошибок
 const showInputError = (inputElement, errorMassage) => {
-  console.log(inputElement.name, errorMassage);
   const formSectionElement = inputElement.closest(".form__section");
   const errorElement = formSectionElement.querySelector(".popup__text-error");
   errorElement.textContent = errorMassage;
@@ -22,8 +21,11 @@ const checkInputValidity = (inputElement) => {
   if (isInputNotValid) {
     const errorMassage = inputElement.validationMessage;
     showInputError(inputElement, errorMassage);
+    inputElement.classList.add("popup__text_not-valid");
+    console.log(inputElement);
   } else {
     hideInputError(inputElement);
+    inputElement.classList.remove("popup__text_not-valid");
   }
 }
 

@@ -1,0 +1,4 @@
+.popup__text_not-valid {
+    border-bottom: 1px solid #FF0000;
+    outline: none
+}
