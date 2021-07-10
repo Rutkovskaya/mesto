@@ -1,13 +1,18 @@
+//Показывалка ошибок
 const showInputError = (inputElement, errorMassage) => {
   console.log(inputElement.name, errorMassage);
   const formSectionElement = inputElement.closest(".form__section");
   const errorElement = formSectionElement.querySelector(".popup__text-error");
   errorElement.textContent = errorMassage;
-  errorElement.classList.add("form__input-error_active");
+  errorElement.classList.add("popup__text-error_active");
 }
 
+//Скрывалка ошибок
 const hideInputError = (inputElement) => {
-
+  const formSectionElement = inputElement.closest(".form__section");
+  const errorElement = formSectionElement.querySelector(".popup__text-error");
+  errorElement.textContent = "";
+  errorElement.classList.add("popup__text-error_active");
 }
 
 const checkInputValidity = (inputElement) => {
@@ -31,7 +36,6 @@ const setEventListeners = (formElement) => {
 
   inputList.forEach(inputElement => {
     inputElement.addEventListener('input', (event) => {
-      console.log(event.target.name);
       checkInputValidity(inputElement);
 
     })
