@@ -30,11 +30,12 @@
             <div class="popup__container">
                 <button type="reset" class="popup__close-btn popup__close-btn_profile"></button>
                 <h2 class="popup__heading">Редактировать профиль</h2>
-                <form name="form" class="form">
+                <form name="form" action="#" method="POST" class="form" novalidate>
                     <input name="Name" type="text" placeholder="Имя" value="Невведённое имя"
-                        class="popup__text popup__text_type_name">
+                        class="popup__text popup__text_type_name" required minlength="2" maxlength="40">
+                        <span class="popup__text-error" id="name-error"></span>
                     <input name="Status" type="text" placeholder="Статус" value="Невведённый статус"
-                        class="popup__text popup__text_type_status">
+                        class="popup__text popup__text_type_status" required minlength="2" maxlength="40">
                     <button type="submit" class="popup__submit-btn">
                         Сохранить
                     </button>
@@ -86,6 +87,7 @@
         <p class="footer__copyright">© 2020. Мария Рутковская</p>
     </footer>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 
 </html>
