@@ -47,14 +47,30 @@ const initialCards = [
 ];
 
 //открыватор попапчиков
-function popupOpened(el) {
+const popupOpened = (el) => {
     el.classList.add('popup_opened');
 }
 
 //закрыватор попапчиков
-function popupСlose(el) {
+const popupСlose = (el) => {
     el.classList.remove('popup_opened');
 }
+
+const overlayClose = (el) => {
+    el.onclick = (evt) => {
+        if (evt.target === evt.currentTarget) {
+            popupСlose(el)
+        };
+    };
+};
+
+const escClose = (el) => {
+    document.addEventListener('keydown', function (evt) {
+        if (evt.key === 'Escape') {
+            popupСlose(el);
+        };
+    });
+};
 
 //Рендрим карточку
 function createCard(name, link) {
@@ -112,12 +128,16 @@ function formSubmitHandler(evt) {
 
 //Закрыватор карточки
 closeViewCard.addEventListener('click', () => popupСlose(viewCard));
+overlayClose(viewCard);
+escClose(viewCard);
 
 //Открыватор добавление карточки
 addButton.addEventListener('click', () => popupOpened(сard));
 
 //Закрыватор добавления карточки
 addcardCloseButton.addEventListener('click', () => popupСlose(сard));
+overlayClose(сard);
+escClose(сard);
 
 //Согласование формы (добавляем карточку)
 formElementAdd.addEventListener('submit', cardSubmitHandler);
@@ -131,6 +151,8 @@ editButton.addEventListener('click', () => {
 
 //Закрыватор редактирования профиля
 closeButton.addEventListener('click', () => popupСlose(popup));
+overlayClose(popup);
+escClose(popup);
 
 //Согласование формы (редактирование профиля)
 formElement.addEventListener('submit', formSubmitHandler);

@@ -52,11 +52,17 @@
             <div class="popup__container addcard__container">
                 <button type="reset" class="popup__close-btn popup__close-btn_addcard"></button>
                 <h2 class="popup__heading">Новое место</h2>
-                <form name="form" class="form form_add">
-                    <input name="NamePlace" type="text" placeholder="Название" value=""
-                        class="popup__text popup__text_type_place">
-                    <input name="urlCard" type="url" placeholder="Ссылка на картинку" value=""
-                        class="popup__text popup__text_type_url">
+                <form name="form" action="#" method="POST" class="form form_add" novalidate>
+                    <section class="form__section">
+                        <input name="NamePlace" type="text" placeholder="Название" value=""
+                            class="popup__text popup__text_type_place"  required minlength="2" maxlength="30">
+                        <span class="popup__text-error" id="nameplace-error"></span>
+                    </section>
+                    <section class="form__section">
+                        <input name="urlCard" type="url" placeholder="Ссылка на картинку" value=""
+                            class="popup__text popup__text_type_url"  required>
+                        <span class="popup__text-error" id="url-error"></span>
+                    </section>
                     <button type="submit" class="popup__submit-btn">
                         Создать
                     </button>
