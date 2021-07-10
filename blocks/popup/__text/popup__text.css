@@ -14,6 +14,11 @@
     outline: none;
 }
 
+.popup__text:not(:focus):invalid {
+    border-bottom: 1px solid #FF0000;
+    outline: none;
+  }
+
 @media (max-width: 425px) {
     .popup__text {
         margin: 30px 22px 0 22px;
