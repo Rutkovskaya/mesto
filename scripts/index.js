@@ -1,4 +1,4 @@
-const popup = document.querySelector('.popup');
+const profilePopup = document.querySelector('.profile_popup');
 const editButton = document.querySelector('.profile-info__edit-button');
 const closeButton = document.querySelector('.popup__close-btn_profile');
 const nameProfile = document.querySelector('.profile-info__name');
@@ -7,8 +7,8 @@ const nameInput = document.querySelector('.popup__text_type_name');
 const jobInput = document.querySelector('.popup__text_type_status');
 const formElement = document.querySelector('.form');
 const addButton = document.querySelector('.add-button');
-const сard = document.querySelector('.addcard');
-const addcardCloseButton = document.querySelector('.popup__close-btn_addcard');
+const сard = document.querySelector('.addcard_popup');
+const addCardCloseButton = document.querySelector('.popup__close-btn_addcard');
 const placeInput = document.querySelector('.popup__text_type_place');
 const urlInput = document.querySelector('.popup__text_type_url');
 const cardContainer = document.querySelector('.photo-grid');
@@ -47,27 +47,30 @@ const initialCards = [
 ];
 
 //открыватор попапчиков
-const popupOpened = (el) => {
+const openPopup = (el) => {
     el.classList.add('popup_opened');
 }
 
 //закрыватор попапчиков
-const popupСlose = (el) => {
+const closePopup = (el) => {
     el.classList.remove('popup_opened');
 }
 
-const overlayClose = (el) => {
-    el.onclick = (evt) => {
-        if (evt.target === evt.currentTarget) {
-            popupСlose(el)
-        };
-    };
+const closeByOverlay = (el) => {
+    el.addEventListener('click', (evt => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(el);
+        }
+        if (evt.target.closest === evt.currentTarget) {
+            closePopup(el);
+        }
+    }))
 };
 
 const escClose = (el) => {
     document.addEventListener('keydown', function (evt) {
         if (evt.key === 'Escape') {
-            popupСlose(el);
+            closePopup(el);
         };
     });
 };
@@ -96,7 +99,7 @@ function createCard(name, link) {
 
     //Открыватор карточки
     selectCard.addEventListener('click', () => {
-        popupOpened(viewCard);
+        openPopup(viewCard);
         viewImage.src = selectCard.src;
         viewImage.alt = selectCard.alt;
         viewHeading.textContent = cardText.textContent;
@@ -113,7 +116,7 @@ function cardSubmitHandler(evt) {
     const urlValue = urlInput.value;
     cardContainer.prepend(createCard(placeValue, urlValue));
 
-    popupСlose(сard);
+    closePopup(сard);
 }
 
 //Функция согласования формы (редактирование профиля)
@@ -123,20 +126,20 @@ function formSubmitHandler(evt) {
     nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
 
-    popupСlose(popup);
+    closePopup(profilePopup);
 }
 
 //Закрыватор карточки
-closeViewCard.addEventListener('click', () => popupСlose(viewCard));
-overlayClose(viewCard);
+closeViewCard.addEventListener('click', () => closePopup(viewCard));
+closeByOverlay(viewCard);
 escClose(viewCard);
 
 //Открыватор добавление карточки
-addButton.addEventListener('click', () => popupOpened(сard));
+addButton.addEventListener('click', () => openPopup(сard));
 
 //Закрыватор добавления карточки
-addcardCloseButton.addEventListener('click', () => popupСlose(сard));
-overlayClose(сard);
+addCardCloseButton.addEventListener('click', () => closePopup(сard));
+closeByOverlay(сard);
 escClose(сard);
 
 //Согласование формы (добавляем карточку)
@@ -144,15 +147,15 @@ formElementAdd.addEventListener('submit', cardSubmitHandler);
 
 //Открыватор редактирования профиля
 editButton.addEventListener('click', () => {
-    popupOpened(popup);
+    openPopup(profilePopup);
     nameInput.setAttribute('value', nameProfile.textContent);
     jobInput.setAttribute('value', jobProfile.textContent);
 });
 
 //Закрыватор редактирования профиля
-closeButton.addEventListener('click', () => popupСlose(popup));
-overlayClose(popup);
-escClose(popup);
+closeButton.addEventListener('click', () => closePopup(profilePopup));
+closeByOverlay(profilePopup);
+escClose(profilePopup);
 
 //Согласование формы (редактирование профиля)
 formElement.addEventListener('submit', formSubmitHandler);
