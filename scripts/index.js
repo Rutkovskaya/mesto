@@ -1,4 +1,4 @@
-const profilePopup = document.querySelector('.profile_popup');
+const profilePopup = document.querySelector('.popup_profile');
 const editButton = document.querySelector('.profile-info__edit-button');
 const closeButton = document.querySelector('.popup__close-btn_profile');
 const nameProfile = document.querySelector('.profile-info__name');
@@ -7,7 +7,7 @@ const nameInput = document.querySelector('.popup__text_type_name');
 const jobInput = document.querySelector('.popup__text_type_status');
 const formElement = document.querySelector('.form');
 const addButton = document.querySelector('.add-button');
-const сard = document.querySelector('.addcard_popup');
+const сard = document.querySelector('.popup_addcard');
 const addCardCloseButton = document.querySelector('.popup__close-btn_addcard');
 const placeInput = document.querySelector('.popup__text_type_place');
 const urlInput = document.querySelector('.popup__text_type_url');
@@ -120,7 +120,7 @@ function cardSubmitHandler(evt) {
 
     evt.target.reset();
 
-    const addCardSubmit = сard.querySelector('.addcard_submit-btn');
+    const addCardSubmit = сard.querySelector('.popup__submit-btn_addcard');
     addCardSubmit.setAttribute("disabled", true);
     addCardSubmit.classList.add("popup__submit-btn_inactive");
 
