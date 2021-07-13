@@ -49,11 +49,13 @@ const initialCards = [
 //открыватор попапчиков
 const openPopup = (el) => {
     el.classList.add('popup_opened');
+    document.addEventListener('keydown', closeByEscape);
 }
 
 //закрыватор попапчиков
 const closePopup = (el) => {
     el.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeByEscape)
 }
 
 const closeByOverlay = (el) => {
@@ -67,12 +69,11 @@ const closeByOverlay = (el) => {
     }))
 };
 
-const escClose = (el) => {
-    document.addEventListener('keydown', function (evt) {
-        if (evt.key === 'Escape') {
-            closePopup(el);
-        };
-    });
+const closeByEscape = (evt) => {
+    if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened');
+        closePopup(openedPopup);
+    };
 };
 
 //Рендрим карточку
@@ -111,10 +112,17 @@ function createCard(name, link) {
 //Функция согласования формы (добавляем карточку)
 function cardSubmitHandler(evt) {
     evt.preventDefault();
-
+    
     const placeValue = placeInput.value;
     const urlValue = urlInput.value;
+   
     cardContainer.prepend(createCard(placeValue, urlValue));
+
+    evt.target.reset();
+
+    const addCardSubmit = сard.querySelector('.addcard_submit-btn');
+    addCardSubmit.setAttribute("disabled", true);
+    addCardSubmit.classList.add("popup__submit-btn_inactive");
 
     closePopup(сard);
 }
@@ -132,7 +140,6 @@ function formSubmitHandler(evt) {
 //Закрыватор карточки
 closeViewCard.addEventListener('click', () => closePopup(viewCard));
 closeByOverlay(viewCard);
-escClose(viewCard);
 
 //Открыватор добавление карточки
 addButton.addEventListener('click', () => openPopup(сard));
@@ -140,7 +147,6 @@ addButton.addEventListener('click', () => openPopup(сard));
 //Закрыватор добавления карточки
 addCardCloseButton.addEventListener('click', () => closePopup(сard));
 closeByOverlay(сard);
-escClose(сard);
 
 //Согласование формы (добавляем карточку)
 formElementAdd.addEventListener('submit', cardSubmitHandler);
@@ -155,7 +161,6 @@ editButton.addEventListener('click', () => {
 //Закрыватор редактирования профиля
 closeButton.addEventListener('click', () => closePopup(profilePopup));
 closeByOverlay(profilePopup);
-escClose(profilePopup);
 
 //Согласование формы (редактирование профиля)
 formElement.addEventListener('submit', formSubmitHandler);
