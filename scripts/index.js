@@ -1,3 +1,6 @@
+import { Card } from './Card.js'
+import { FormValidator } from './FormValidator.js'
+
 const profilePopup = document.querySelector('.popup_profile');
 const editButton = document.querySelector('.profile-info__edit-button');
 const closeButton = document.querySelector('.popup__close-btn_profile');
@@ -16,8 +19,8 @@ const cardTemplate = document.querySelector('.card-template');
 const formElementAdd = document.querySelector('.form_add');
 const viewCard = document.querySelector('.view-card');
 const closeViewCard = document.querySelector('.popup__close-btn_view');
-const viewImage = document.querySelector('.view-card__image');
-const viewHeading = document.querySelector('.view-card__heading');
+//const viewImage = document.querySelector('.view-card__image');
+//const viewHeading = document.querySelector('.view-card__heading');
 
 const initialCards = [
     {
@@ -77,7 +80,7 @@ const closeByEscape = (evt) => {
 };
 
 //Рендрим карточку
-function createCard(name, link) {
+/*function createCard(name, link) {
     const newCard = cardTemplate.content.querySelector('.card').cloneNode(true);
     const cardText = newCard.querySelector('.card__text');
     const selectCard = newCard.querySelector('.card__image');
@@ -107,16 +110,17 @@ function createCard(name, link) {
     });
 
     return newCard;
-}
+}*/
 
 //Функция согласования формы (добавляем карточку)
 function cardSubmitHandler(evt) {
     evt.preventDefault();
-    
+
     const placeValue = placeInput.value;
     const urlValue = urlInput.value;
-   
-    cardContainer.prepend(createCard(placeValue, urlValue));
+
+    const card = new Card(placeValue, urlValue, cardTemplate);
+    cardContainer.prepend(card.getCard())
 
     evt.target.reset();
 
@@ -167,7 +171,10 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 //Добавляем карточки
 initialCards.forEach(function (el) {
-    cardContainer.append(createCard(el.name, el.link));
+    const card = new Card(el.name, el.link, cardTemplate)
+    cardContainer.append(card.getCard())
 });
+
+export { openPopup }
 
 //СПАСИБО =)

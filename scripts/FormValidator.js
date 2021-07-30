@@ -1,0 +1,3 @@
+class FormValidator{}
+
+export { FormValidator }

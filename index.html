@@ -55,15 +55,16 @@
                 <form name="form" action="#" method="POST" class="form form_add" novalidate>
                     <section class="form__section">
                         <input name="NamePlace" type="text" placeholder="Название" value=""
-                            class="popup__text popup__text_type_place"  required minlength="2" maxlength="30">
+                            class="popup__text popup__text_type_place" required minlength="2" maxlength="30">
                         <span class="popup__text-error" id="nameplace-error"></span>
                     </section>
                     <section class="form__section">
                         <input name="urlCard" type="url" placeholder="Ссылка на картинку" value=""
-                            class="popup__text popup__text_type_url"  required>
+                            class="popup__text popup__text_type_url" required>
                         <span class="popup__text-error" id="url-error"></span>
                     </section>
-                    <button type="submit" class="popup__submit-btn popup__submit-btn_addcard popup__submit-btn_inactive">
+                    <button type="submit"
+                        class="popup__submit-btn popup__submit-btn_addcard popup__submit-btn_inactive">
                         Создать
                     </button>
                 </form>
@@ -97,8 +98,9 @@
     <footer class="footer">
         <p class="footer__copyright">© 2020. Мария Рутковская</p>
     </footer>
-    <script src="./scripts/index.js"></script>
-    <script src="./scripts/validate.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/Card.js"></script>
+    <script type="module" src="./scripts/FormValidator.js"></script>
 </body>
 
 </html>
