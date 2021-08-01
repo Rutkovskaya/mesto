@@ -1,4 +1,4 @@
-//Показывалка ошибок
+/*//Показывалка ошибок
 const showInputError = (inputElement, errorMassage, sectionClass, inputErrorClass, errorClass, inputNotValidClass) => {
   const formSectionElement = inputElement.closest(sectionClass);
   const errorElement = formSectionElement.querySelector(inputErrorClass);
@@ -72,16 +72,22 @@ const setEventListeners = (formElement, inputSelector, submitButtonSelector, ina
       toggleButtonState(inputList, buttonElement, inactiveButtonClass);
     })
   })
-}
+}*/
 
+import { FormValidator } from './FormValidator.js'
 
-enableValidation({
-  formSelector: '.form',
+const selector = {
   inputSelector: '.popup__text',
   submitButtonSelector: '.popup__submit-btn',
   inactiveButtonClass: 'popup__submit-btn_inactive',
   inputErrorClass: '.popup__text-error',
   errorClass: 'popup__text-error_active',
   sectionClass: '.form__section',
-  inputNotValidClass: 'popup__text_not-valid',
-});
+  inputNotValidClass: 'popup__text_not-valid'
+}
+
+const validatorProfile = new FormValidator(document.querySelector('.form_profile'), selector);
+validatorProfile.enableValidation()
+
+const validatorAdd = new FormValidator(document.querySelector('.form_add'), selector);
+validatorAdd.enableValidation()

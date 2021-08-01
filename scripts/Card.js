@@ -31,12 +31,12 @@ class Card {
     _EventListener() {
         //Удалятор карточек
         this._cardRemoveButton.addEventListener('click', function (e) {
-            this.e.target.closest('.card').remove();
+            e.target.closest('.card').remove();
         });
 
         //Лайкатор карточек
         this._hartButton.addEventListener('click', () => {
-            this.hartButton.classList.toggle('hart-button_activ');
+            this._hartButton.classList.toggle('hart-button_activ');
         });
 
         //Открыватор карточки

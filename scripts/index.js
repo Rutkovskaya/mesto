@@ -1,5 +1,4 @@
 import { Card } from './Card.js'
-import { FormValidator } from './FormValidator.js'
 
 const profilePopup = document.querySelector('.popup_profile');
 const editButton = document.querySelector('.profile-info__edit-button');
@@ -19,8 +18,6 @@ const cardTemplate = document.querySelector('.card-template');
 const formElementAdd = document.querySelector('.form_add');
 const viewCard = document.querySelector('.view-card');
 const closeViewCard = document.querySelector('.popup__close-btn_view');
-//const viewImage = document.querySelector('.view-card__image');
-//const viewHeading = document.querySelector('.view-card__heading');
 
 const initialCards = [
     {
@@ -78,39 +75,6 @@ const closeByEscape = (evt) => {
         closePopup(openedPopup);
     };
 };
-
-//Рендрим карточку
-/*function createCard(name, link) {
-    const newCard = cardTemplate.content.querySelector('.card').cloneNode(true);
-    const cardText = newCard.querySelector('.card__text');
-    const selectCard = newCard.querySelector('.card__image');
-    const cardRemoveButton = newCard.querySelector('.trash-button');
-    const hartButton = newCard.querySelector('.hart-button');
-
-    cardText.textContent = name;
-    selectCard.src = link;
-    selectCard.alt = name;
-
-    //Удалятор карточек
-    cardRemoveButton.addEventListener('click', function (e) {
-        e.target.closest('.card').remove();
-    });
-
-    //Лайкатор карточек
-    hartButton.addEventListener('click', () => {
-        hartButton.classList.toggle('hart-button_activ');
-    });
-
-    //Открыватор карточки
-    selectCard.addEventListener('click', () => {
-        openPopup(viewCard);
-        viewImage.src = selectCard.src;
-        viewImage.alt = selectCard.alt;
-        viewHeading.textContent = cardText.textContent;
-    });
-
-    return newCard;
-}*/
 
 //Функция согласования формы (добавляем карточку)
 function cardSubmitHandler(evt) {
