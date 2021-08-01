@@ -12,21 +12,23 @@ class FormValidator {
     }
 
     //Показывалка ошибок
-   _showInputError = (inputElement, errorMassage, _sectionClass, _inputErrorClass, _errorClass, _inputNotValidClass) => {
-        const formSectionElement = inputElement.closest(this._sectionClass);
-        const errorElement = formSectionElement.querySelector(this._inputErrorClass);
-        errorElement.textContent = errorMassage;
-        errorElement.classList.add(this._errorClass);
-        inputElement.classList.add(this._inputNotValidClass);
-     }
+    _showInputError = (_inputElement, _errorMassage, _sectionClass, _inputErrorClass, _errorClass, _inputNotValidClass) => {
+        console.log(_sectionClass)
+        console.log(_inputElement)
+        const _formSectionElement = _inputElement.closest(_sectionClass);
+        const _errorElement = _formSectionElement.querySelector(_inputErrorClass);
+        _errorElement.textContent = _errorMassage;
+        _errorElement.classList.add(this._errorClass);
+        _inputElement.classList.add(this._inputNotValidClass);
+    }
 
     //Скрывалка ошибок
-    _hideInputError = (inputElement, _sectionClass, _inputErrorClass, _errorClass, _inputNotValidClass) => {
-        const formSectionElement = inputElement.closest(this._sectionClass);
-        const errorElement = formSectionElement.querySelector(this._inputErrorClass);
-        errorElement.textContent = "";
-        errorElement.classList.add(this._errorClass);
-        inputElement.classList.remove(this._inputNotValidClass);
+    _hideInputError = (_inputElement, _sectionClass, _inputErrorClass, _errorClass, _inputNotValidClass) => {
+        const _formSectionElement = _inputElement.closest(this._sectionClass);
+        const _errorElement = _formSectionElement.querySelector(this._inputErrorClass);
+        _errorElement.textContent = "";
+        _errorElement.classList.add(this._errorClass);
+        _inputElement.classList.remove(this._inputNotValidClass);
     }
 
     //Определятор запуска функции показывать или нет ошибку
@@ -65,10 +67,11 @@ class FormValidator {
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         //Ищем кнопку
         this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-
+        
         //При каждом нажатии кнопки на клаве запускаем проверку ошибки
         this._inputList.forEach(_inputElement => {
             _inputElement.addEventListener('input', (event) => {
+                console.log(_inputElement)
                 this._checkInputValidity(_inputElement, _inputNotValidClass, _sectionClass, _inputErrorClass, _errorClass);
 
                 this._toggleButtonState(_inputList, _buttonElement, _inactiveButtonClass);
