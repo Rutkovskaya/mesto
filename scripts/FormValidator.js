@@ -41,12 +41,11 @@ class FormValidator {
     }
 
     //Переключаем состояние кнопки
-    _toggleButtonState(inputElement) {
-        console.log(this._inputList)
-        console.log(inputElement)
-        this._hasNotValidInput() = this._inputList.some(!inputElement.validity.valid);
+    _toggleButtonState() {
+        const _findAtLeastOneNotValid = (inputElement) => !inputElement.validity.valid;
+        const _hasNotValidInput = this._inputList.some(_findAtLeastOneNotValid);
 
-        if (this._hasNotValidInput) {
+        if (_hasNotValidInput) {
             this._buttonElement.setAttribute("disabled", true);
             this._buttonElement.classList.add(this._inactiveButtonClass);
         } else {
