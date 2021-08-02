@@ -140,5 +140,5 @@ initialCards.forEach(function (el) {
 });
 
 export { openPopup }
-
+export { viewCard }
 //СПАСИБО =)

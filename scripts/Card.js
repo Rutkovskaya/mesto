@@ -1,4 +1,5 @@
 import { openPopup } from './index.js'
+import { viewCard } from './index.js'
 
 class Card {
     _name
@@ -41,12 +42,12 @@ class Card {
 
         //Открыватор карточки
         this._selectCard.addEventListener('click', () => {
-            this._viewImage = this.document.querySelector('.view-card__image');
-            this._viewHeading = this.document.querySelector('.view-card__heading');
             openPopup(viewCard);
-            this._viewImage.src = this.selectCard.src;
-            this._viewImage.alt = this.selectCard.alt;
-            this._viewHeading.textContent = this.cardText.textContent;
+            const _viewImage = document.querySelector('.view-card__image');
+            const _viewHeading = document.querySelector('.view-card__heading');
+            _viewImage.src = this._selectCard.src;
+            _viewImage.alt = this._selectCard.alt;
+            _viewHeading.textContent = this._cardText.textContent;
         });
     }
 }
