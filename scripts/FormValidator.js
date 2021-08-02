@@ -44,7 +44,7 @@ class FormValidator {
     _toggleButtonState(inputElement) {
         console.log(this._inputList)
         console.log(inputElement)
-        this._hasNotValidInput = this._inputList.some(!inputElement.validity.valid);
+        this._hasNotValidInput() = this._inputList.some(!inputElement.validity.valid);
 
         if (this._hasNotValidInput) {
             this._buttonElement.setAttribute("disabled", true);
