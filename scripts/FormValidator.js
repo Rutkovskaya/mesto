@@ -34,8 +34,8 @@ class FormValidator {
     //Определятор запуска функции показывать или нет ошибку
     _checkInputValidity = (_inputElement, _inputNotValidClass, _sectionClass, _inputErrorClass, _errorClass) => {
         this._isInputNotValid = !_inputElement.validity.valid;
-
         if (this._isInputNotValid) {
+            console.log(_inputElement)
             this._errorMassage = _inputElement.validationMessage;
             this._showInputError(this._inputElement, this._errorMassage, this._sectionClass, this._inputErrorClass, this._errorClass, this._inputNotValidClass);
         } else {
@@ -71,14 +71,12 @@ class FormValidator {
         //При каждом нажатии кнопки на клаве запускаем проверку ошибки
         this._inputList.forEach(_inputElement => {
             _inputElement.addEventListener('input', (event) => {
-                console.log(_inputElement)
                 this._checkInputValidity(_inputElement, _inputNotValidClass, _sectionClass, _inputErrorClass, _errorClass);
 
                 this._toggleButtonState(_inputList, _buttonElement, _inactiveButtonClass);
             })
         })
     }
-
 }
 
 export { FormValidator }
