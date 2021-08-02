@@ -141,4 +141,22 @@ initialCards.forEach(function (el) {
 
 export { openPopup }
 export { viewCard }
+
+import { FormValidator } from './FormValidator.js'
+
+const selector = {
+    inputSelector: '.popup__text',
+    submitButtonSelector: '.popup__submit-btn',
+    inactiveButtonClass: 'popup__submit-btn_inactive',
+    inputErrorClass: '.popup__text-error',
+    errorClass: 'popup__text-error_active',
+    sectionClass: '.form__section',
+    inputNotValidClass: 'popup__text_not-valid'
+}
+
+const validatorProfile = new FormValidator(document.querySelector('.form_profile'), selector);
+validatorProfile.enableValidation()
+
+const validatorAdd = new FormValidator(document.querySelector('.form_add'), selector);
+validatorAdd.enableValidation()
 //СПАСИБО =)

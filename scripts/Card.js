@@ -24,12 +24,12 @@ class Card {
         this._selectCard.src = this._link;
         this._selectCard.alt = this._name;
 
-        this._EventListener();
+        this._setEventListeners();
 
         return this._newCard;
     }
 
-    _EventListener() {
+    _setEventListeners() {
         //Удалятор карточек
         this._cardRemoveButton.addEventListener('click', function (e) {
             e.target.closest('.card').remove();
