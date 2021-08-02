@@ -12,17 +12,17 @@ class FormValidator {
     }
 
     //Показывалка ошибок
-    _showInputError = (inputElement, _errorMassage) => {
-        const _formSectionElement = this.inputElement.closest(_sectionClass);
-        const _errorElement = _formSectionElement.querySelector(_inputErrorClass);
-        _errorElement.textContent = _errorMassage;
+    _showInputError = (inputElement) => {
+        const _formSectionElement = inputElement.closest(this._sectionClass);
+        const _errorElement = _formSectionElement.querySelector(this._inputErrorClass);
+        _errorElement.textContent = this._errorMassage;
         _errorElement.classList.add(this._errorClass);
         inputElement.classList.add(this._inputNotValidClass);
     }
 
     //Скрывалка ошибок
     _hideInputError = (inputElement) => {
-        const _formSectionElement = this.inputElement.closest(this._sectionClass);
+        const _formSectionElement = inputElement.closest(this._sectionClass);
         const _errorElement = _formSectionElement.querySelector(this._inputErrorClass);
         _errorElement.textContent = "";
         _errorElement.classList.add(this._errorClass);
@@ -34,15 +34,15 @@ class FormValidator {
         this._isInputNotValid = !inputElement.validity.valid;
         if (this._isInputNotValid) {
             this._errorMassage = inputElement.validationMessage;
-            this._showInputError();
+            this._showInputError(inputElement);
         } else {
-            this._hideInputError();
+            this._hideInputError(inputElement);
         }
     }
 
     //Переключаем состояние кнопки
-    _toggleButtonState() {
-        _findAtLeastOneNotValid = () => !this.inputElement.validity.valid;
+    _toggleButtonState(inputElement) {
+        _findAtLeastOneNotValid = () => !inputElement.validity.valid;
         this._hasNotValidInput = inputList.some(this._findAtLeastOneNotValid);
 
         if (_hasNotValidInput) {
@@ -74,7 +74,7 @@ class FormValidator {
             inputElement.addEventListener('input', (event) => {
                 this._checkInputValidity(inputElement);
 
-                this._toggleButtonState(_inputList, _buttonElement);
+                this._toggleButtonState(inputElement);
             })
         })
     }
