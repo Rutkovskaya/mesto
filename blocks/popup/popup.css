@@ -1,12 +1,19 @@
 .popup {
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
+  font-family: 'Inter', Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, .5);
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
   bottom: 0;
-  display: none;
-  z-index: 2;
+  right: 0;
+  /*Стили для плавного появления*/
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  transition: visibility 0s, opacity 0.6s;
+  z-index: 10;
 }

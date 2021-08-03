@@ -1,15 +1,13 @@
-import { openPopup } from './index.js'
-import { viewCard } from './index.js'
-
 class Card {
     _name
     _link
     _template
 
-    constructor(name, link, template) {
+    constructor(name, link, template, handleCardClick) {
         this._name = name
         this._link = link
         this._template = template
+        this._handleCardClick = handleCardClick;
     }
 
     getCard() {
@@ -42,12 +40,7 @@ class Card {
 
         //Открыватор карточки
         this._selectCard.addEventListener('click', () => {
-            openPopup(viewCard);
-            const _viewImage = document.querySelector('.view-card__image');
-            const _viewHeading = document.querySelector('.view-card__heading');
-            _viewImage.src = this._selectCard.src;
-            _viewImage.alt = this._selectCard.alt;
-            _viewHeading.textContent = this._cardText.textContent;
+            this._handleCardClick(this._name, this._link)
         });
     }
 }

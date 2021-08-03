@@ -54,6 +54,14 @@ class FormValidator {
         }
     };
 
+    resetValidation() {
+        this._toggleButtonState();
+        this._inputList.forEach((inputElement) => {
+            this._hideInputError(inputElement)
+        });
+
+    }
+
     enableValidation() {
         //Отменяем стандартную отправку по субмиту
         this._formElement.addEventListener("submit", (event) => {
