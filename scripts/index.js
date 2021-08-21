@@ -49,20 +49,20 @@ const initialCards = [
 ];
 
 //Создаем карточки
-function createCard(item, template) {
-    const card = new Card( item, template, handleCardClick);
+function createCard(name, link, template) {
+    const card = new Card( name, link, template, handleCardClick);
     card.getCard();
     return card
 }
 
 const cardsList = new Section({
     items: initialCards,
-    renderer: (item) => {
-        const cardElement = createCard(item, template);
+    renderer: (name, link) => {
+        const cardElement = createCard(name, link, cardTemplate);
         cardsList.addItem(cardElement);
     }
 }, cardContainer);
-cardsList.renderItem();
+cardsList.rendererItem();
 
 //Открыватор карточки
 function handleCardClick(name, link) {
