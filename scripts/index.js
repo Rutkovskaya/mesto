@@ -3,6 +3,7 @@ import { FormValidator } from './FormValidator.js'
 import { Popup } from './Popup.js'
 import { PopupWithImage } from './PopupWithImage.js'
 import { Section } from './Section.js';
+import { PopupWithForm } from './PopupWithForm.js'
 
 const popups = document.querySelectorAll('.popup')
 const profilePopup = document.querySelector('.popup_profile');
@@ -70,9 +71,15 @@ function handleCardClick(name, link) {
     popupViewCard.open(name, link)
 }
 
+
+
+
+
 //Функция согласования формы (добавляем карточку)
 function cardSubmitHandler(evt) {
-    evt.preventDefault();
+
+    const popupCard = new PopupWithForm (сard);
+   /* evt.preventDefault();
 
     const placeValue = placeInput.value;
     const urlValue = urlInput.value;
@@ -81,10 +88,10 @@ function cardSubmitHandler(evt) {
 
     evt.target.reset();
 
-    validatorAdd.resetValidation();
+    validatorAdd.resetValidation();*/
 
 
-    const popupCard = new Popup(сard);
+   // const popupCard = new Popup(сard);
     popupCard.close()
 }
 

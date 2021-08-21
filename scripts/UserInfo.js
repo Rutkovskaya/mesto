@@ -1,11 +1,10 @@
 import Popup from "./Popup.js";
 
 export default class UserInfo extends Popup {
-  constructor(container, validator, api) {
+  constructor(container, validator) {
     super(container);
 
     this.validator = validator;
-    this.api = api;
 
     this._form = this.container.querySelector("form");
     this._formButton = this._form.querySelector(".popup__button");
@@ -29,27 +28,8 @@ export default class UserInfo extends Popup {
 
   _submitEditForm = (event) => {
     event.preventDefault();
-
-    this._formButton.textContent = "Загрузка...";
-
-    this.api(
-      {
-        name: this._inputName.value,
-        about: this._inputJob.value,
-      },
-      ""
-    )
-      .then((result) => this.setDefaultValue(result.name, result.about))
-      .then(() => {
-        this.close();
-        this._removeEditFormListener();
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        this._formButton.textContent = "Сохранить";
-      });
   };
-
+  
   _removeEditFormListener = () => {
     this.container.removeEventListener("submit", this._submitEditForm);
   };
