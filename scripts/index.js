@@ -48,20 +48,21 @@ const initialCards = [
     }
 ];
 
-cardsList = new Section({
+//Создаем карточки
+function createCard(item, template) {
+    const card = new Card( {name, link}, template, handleCardClick);
+    card.getCard();
+    return card
+}
+
+const cardsList = new Section({
     items: initialCards,
     renderer: (item) => {
-        const cardElement = createCard(item);
+        const cardElement = createCard(item, template);
         cardsList.addItem(cardElement);
     }
 }, cardContainer);
-cardsList.renderItem();
-
-//Создаем карточки
-function createCard(name, link, template) {
-    const card = new Card(name, link, template, handleCardClick)
-    return card
-}
+cardsList.renderItem(initialCards);
 
 //Открыватор карточки
 function handleCardClick(name, link) {
