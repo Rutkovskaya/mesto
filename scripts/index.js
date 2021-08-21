@@ -50,7 +50,7 @@ const initialCards = [
 
 //Создаем карточки
 function createCard(item, template) {
-    const card = new Card( {name, link}, template, handleCardClick);
+    const card = new Card( item, template, handleCardClick);
     card.getCard();
     return card
 }
@@ -62,7 +62,7 @@ const cardsList = new Section({
         cardsList.addItem(cardElement);
     }
 }, cardContainer);
-cardsList.renderItem(initialCards);
+cardsList.renderItem();
 
 //Открыватор карточки
 function handleCardClick(name, link) {
