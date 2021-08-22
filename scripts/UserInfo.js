@@ -1,6 +1,6 @@
 import Popup from "./Popup.js";
 
-export default class UserInfo extends Popup {
+class UserInfo extends Popup {
   constructor(container, validator) {
     super(container);
 
@@ -39,3 +39,5 @@ export default class UserInfo extends Popup {
     this._inputJob.defaultValue = about;
   }
 }
+
+export { UserInfo }

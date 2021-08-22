@@ -4,6 +4,7 @@ import { Popup } from './Popup.js'
 import { PopupWithImage } from './PopupWithImage.js'
 import { Section } from './Section.js';
 import { PopupWithForm } from './PopupWithForm.js';
+import { UserInfo } from './UserInfo.js';
 
 const popups = document.querySelectorAll('.popup')
 const profilePopup = document.querySelector('.popup_profile');
@@ -65,6 +66,13 @@ const cardsList = new Section({
 }, cardContainer);
 cardsList.rendererItem();
 
+
+//Добавляем карточки
+/*initialCards.forEach(function (el) {
+    cardContainer.append(createCard(el.name, el.link, cardTemplate).getCard())
+});*/
+
+
 //Открыватор карточки
 function handleCardClick(name, link) {
     const popupViewCard = new PopupWithImage(viewCard);
@@ -82,7 +90,7 @@ addButton.addEventListener('click', () => {
 
 const popupWithFormAddCard = new PopupWithForm({
     popupSelector: сard,
-    
+
     handleFormSubmit: (name, link) => {
         const cardElement = createCard(name, link, cardTemplate);
         cardsList.addItem(cardElement);
@@ -90,7 +98,6 @@ const popupWithFormAddCard = new PopupWithForm({
         console.log(name);
         console.log(link);
     }
-    
 })
 
 
@@ -136,11 +143,6 @@ editButton.addEventListener('click', () => {
 
 //Согласование формы (редактирование профиля)
 formElement.addEventListener('submit', formSubmitHandler);
-
-//Добавляем карточки
-initialCards.forEach(function (el) {
-    cardContainer.append(createCard(el.name, el.link, cardTemplate).getCard())
-});
 
 const selector = {
     inputSelector: '.popup__text',
