@@ -1,6 +1,6 @@
-export default class Popup {
-    constructor(selector) {
-        this._selector = selector;
+class Popup {
+    constructor(popupSelector) {
+        this._selector = popupSelector;
     }
 
     open = () => {
@@ -39,5 +39,4 @@ export default class Popup {
         }
     };
 }
-
-export { Popup }
+export {Popup}

@@ -1,6 +1,6 @@
-import Popup from "./Popup.js";
+import {Popup} from "../scripts/Popup.js";
 
- class PopupWithImage extends Popup {
+export class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this._viewImage = document.querySelector('.view-card__image');
@@ -16,5 +16,3 @@ import Popup from "./Popup.js";
     super.open();
   }
 }
-
-export { PopupWithImage }
