@@ -51,16 +51,16 @@ const initialCards = [
 ];
 
 //Создаем карточки
-function createCard(name, link, template) {
-    const card = new Card(name, link, template, handleCardClick);
+function createCard(items, template) {
+    const card = new Card(items, template, handleCardClick);
     card.getCard();
     return card
 }
 
 const cardsList = new Section({
     items: initialCards,
-    renderer: (name, link) => {
-        const cardElement = createCard(name, link, cardTemplate);
+    renderer: (items) => {
+        const cardElement = createCard(items, cardTemplate);
         cardsList.addItem(cardElement);
     }
 }, cardContainer);
