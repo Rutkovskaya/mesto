@@ -57,12 +57,8 @@ function handleCardClick(name, link) {
 //Создаем карточки
 function createCard(name, link) {
     const card = new Card(name, link, cardTemplate, handleCardClick);
-    card.getCard();
-
-    //console.log(name);
-    //console.log(link);
-
-    return card
+    const newCard = card.getCard();
+    return newCard
 }
 
 //Добавлятор карточки
