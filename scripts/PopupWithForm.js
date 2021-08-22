@@ -22,13 +22,13 @@ class PopupWithForm extends Popup {
     this.close();
   }
 
-  _setEventListeners() {
-    super._setEventListeners();
+  setEventListeners() {
+    super.setEventListeners();
     this._form.addEventListener('submit', this._submitForm);
   }
 
-  _removeEventListeners() {
-    super._removeEventListeners();
+  removeEventListeners() {
+    super.removeEventListeners();
     this._form.removeEventListener('submit', this._submitForm);
   }
 

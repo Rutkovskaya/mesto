@@ -92,6 +92,7 @@ addButton.addEventListener('click', () => {
 const popupWithFormAddCard = new PopupWithForm({
     popupSelector: сard,
     handleFormSubmit: (data) => {
+        console.log(data);
         const cardElement = createCard(data.name, data.link);
         cardsList.addItem(cardElement);
     }
