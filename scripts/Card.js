@@ -1,7 +1,4 @@
 class Card {
-    _name
-    _link
-    _template
 
     constructor(name, link, template, handleCardClick) {
         this._name = name

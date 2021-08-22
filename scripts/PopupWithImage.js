@@ -7,6 +7,8 @@ export default class PopupWithImage extends Popup {
     this._viewHeading = document.querySelector('.view-card__heading');
   }
 
+
+  
   open(name, link) {
     this._viewImage.src = link;
     this._viewImage.alt = name;

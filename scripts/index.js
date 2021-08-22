@@ -3,7 +3,7 @@ import { FormValidator } from './FormValidator.js'
 import { Popup } from './Popup.js'
 import { PopupWithImage } from './PopupWithImage.js'
 import { Section } from './Section.js';
-import { PopupWithForm } from './PopupWithForm.js'
+import { PopupWithForm } from './PopupWithForm.js';
 
 const popups = document.querySelectorAll('.popup')
 const profilePopup = document.querySelector('.popup_profile');
@@ -51,7 +51,7 @@ const initialCards = [
 
 //Создаем карточки
 function createCard(name, link, template) {
-    const card = new Card( name, link, template, handleCardClick);
+    const card = new Card(name, link, template, handleCardClick);
     card.getCard();
     return card
 }
@@ -68,32 +68,48 @@ cardsList.rendererItem();
 //Открыватор карточки
 function handleCardClick(name, link) {
     const popupViewCard = new PopupWithImage(viewCard);
-    popupViewCard.open(name, link)
+    popupViewCard.open(name, link);
+
+    console.log(name);
+    console.log(link);
 }
 
+//Открыватор добавление карточки
+addButton.addEventListener('click', () => {
+    popupWithFormAddCard.open()
+});
 
 
+const popupWithFormAddCard = new PopupWithForm({
+    popupSelector: сard,
+    
+    handleFormSubmit: (name, link) => {
+        const cardElement = createCard(name, link, cardTemplate);
+        cardsList.addItem(cardElement);
+
+        console.log(name);
+        console.log(link);
+    }
+    
+})
 
 
 //Функция согласования формы (добавляем карточку)
-function cardSubmitHandler(evt) {
+//function cardSubmitHandler(evt) {
 
-    const popupCard = new PopupWithForm (сard);
-   /* evt.preventDefault();
+/* evt.preventDefault();
 
-    const placeValue = placeInput.value;
-    const urlValue = urlInput.value;
+ const placeValue = placeInput.value;
+ const urlValue = urlInput.value;
 
-    cardContainer.prepend(createCard(placeValue, urlValue, cardTemplate).getCard())
+ cardContainer.prepend(createCard(placeValue, urlValue, cardTemplate).getCard())
 
-    evt.target.reset();
+ evt.target.reset();
 
-    validatorAdd.resetValidation();*/
+ validatorAdd.resetValidation();
 
-
-   // const popupCard = new Popup(сard);
-    popupCard.close()
-}
+popupCard.close()
+}*/
 
 //Функция согласования формы (редактирование профиля)
 function formSubmitHandler(evt) {
@@ -107,14 +123,8 @@ function formSubmitHandler(evt) {
     popupProfile.close()
 }
 
-//Открыватор добавление карточки
-addButton.addEventListener('click', () => {
-    const popupCard = new Popup(сard);
-    popupCard.open()
-});
-
 //Согласование формы (добавляем карточку)
-formElementAdd.addEventListener('submit', cardSubmitHandler);
+//formElementAdd.addEventListener('submit', cardSubmitHandler);
 
 //Открыватор редактирования профиля
 editButton.addEventListener('click', () => {
