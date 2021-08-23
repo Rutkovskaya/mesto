@@ -5,12 +5,13 @@ class Section {
     this._container = containerSelector;
   }
 
-  rendererItem() {
+  renderItems() {
     this._items.forEach(item => this._renderer(item));
   }
 
   addItem(item) {
-    this._container.prepend (item);
+    this._container.prepend(item);
   }
 }
-export{Section}
+
+export { Section }

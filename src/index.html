@@ -32,12 +32,12 @@
                 <h2 class="popup__heading">Редактировать профиль</h2>
                 <form name="form" action="#" method="POST" class="form form_profile" novalidate>
                     <section class="form__section">
-                        <input name="Name" type="text" placeholder="Имя" value="Невведённое имя"
+                        <input name="name" type="text" placeholder="Имя" value="Невведённое имя"
                             class="popup__text popup__text_type_name" required minlength="2" maxlength="40">
                         <span class="popup__text-error" id="name-error"></span>
                     </section>
                     <section class="form__section">
-                        <input name="Status" type="text" placeholder="Статус" value="Невведённый статус"
+                        <input name="job" type="text" placeholder="Статус" value="Невведённый статус"
                             class="popup__text popup__text_type_status" required minlength="2" maxlength="40">
                         <span class="popup__text-error" id="status-error"></span>
                     </section>
@@ -54,12 +54,12 @@
                 <h2 class="popup__heading">Новое место</h2>
                 <form name="form" action="#" method="POST" class="form form_add" novalidate>
                     <section class="form__section">
-                        <input name="NamePlace" type="text" placeholder="Название" value=""
+                        <input name="name" type="text" placeholder="Название" value=""
                             class="popup__text popup__text_type_place" required minlength="2" maxlength="30">
                         <span class="popup__text-error" id="nameplace-error"></span>
                     </section>
                     <section class="form__section">
-                        <input name="urlCard" type="url" placeholder="Ссылка на картинку" value=""
+                        <input name="link" type="url" placeholder="Ссылка на картинку" value=""
                             class="popup__text popup__text_type_url" required>
                         <span class="popup__text-error" id="url-error"></span>
                     </section>

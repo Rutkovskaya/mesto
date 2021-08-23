@@ -1,18 +1,12 @@
-import {Popup} from "../scripts/Popup.js";
+import { Popup } from "../scripts/Popup.js";
 
 export class PopupWithImage extends Popup {
-  constructor(popupSelector) {
-    super(popupSelector);
-    this._viewImage = document.querySelector('.view-card__image');
-    this._viewHeading = document.querySelector('.view-card__heading');
-  }
-
-
-  
   open(name, link) {
-    this._viewImage.src = link;
-    this._viewImage.alt = name;
-    this._viewHeading.textContent = name;
+    const viewImage = this._popupElement.querySelector('.view-card__image');
+    const viewHeading = this._popupElement.querySelector('.view-card__heading');
+    viewImage.src = link;
+    viewImage.alt = name;
+    viewHeading.textContent = name;
     super.open();
   }
 }

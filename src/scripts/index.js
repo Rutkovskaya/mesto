@@ -5,17 +5,14 @@ import { Section } from './Section.js';
 import { PopupWithForm } from './PopupWithForm.js';
 import { UserInfo } from './UserInfo.js';
 
-const profilePopup = document.querySelector('.popup_profile');
 const editButton = document.querySelector('.profile-info__edit-button');
 const nameProfile = document.querySelector('.profile-info__name');
 const jobProfile = document.querySelector('.profile-info__status');
 const nameInput = document.querySelector('.popup__text_type_name');
 const jobInput = document.querySelector('.popup__text_type_status');
 const addButton = document.querySelector('.add-button');
-const сard = document.querySelector('.popup_addcard');
 const cardContainer = document.querySelector('.photo-grid');
 const cardTemplate = document.querySelector('.card-template');
-const viewCard = document.querySelector('.view-card');
 
 const initialCards = [
     {
@@ -44,61 +41,6 @@ const initialCards = [
     }
 ];
 
-//Открыватор карточки
-function handleCardClick(name, link) {
-    const popupViewCard = new PopupWithImage(viewCard);
-    popupViewCard.open(name, link);
-}
-
-//Создаватор карточки
-function createCard(name, link) {
-    const card = new Card(name, link, cardTemplate, handleCardClick);
-    const newCard = card.getCard();
-    return newCard
-}
-
-//Добавлятор массива карточек
-const cardsList = new Section({
-    items: initialCards,
-    renderer: (items) => {
-        const cardElement = createCard(items.name, items.link);
-        cardsList.addItem(cardElement);
-    }
-}, cardContainer);
-cardsList.rendererItem();
-
-
-//Открыватор добавление новой карточки
-addButton.addEventListener('click', () => {
-    popupWithFormAddCard.open()
-});
-
-const popupWithFormAddCard = new PopupWithForm({
-    popupSelector: сard,
-    handleFormSubmit: (items) => {
-        const cardElement = createCard(items.name, items.link);
-        cardsList.addItem(cardElement);
-    }
-})
-
-//Инфа о пользователе
-const userInfo = new UserInfo(nameProfile, jobProfile);
-
-//Открыватор редактирования профиля
-editButton.addEventListener('click', function () {
-    const userData = userInfo.getUserInfo();
-    nameInput.value = userData.nameProfile;
-    jobInput.value = userData.jobProfile;
-    popupWithFormProfile.open();
-})
-
-const popupWithFormProfile = new PopupWithForm({
-    popupSelector: profilePopup,
-    handleFormSubmit: (data) => {
-        setUserInfo(data.name, data.job)
-    }
-})
-
 //Настройка селекторов
 const selector = {
     inputSelector: '.popup__text',
@@ -109,6 +51,67 @@ const selector = {
     sectionClass: '.form__section',
     inputNotValidClass: 'popup__text_not-valid'
 }
+
+const popupViewCard = new PopupWithImage('.view-card');
+popupViewCard.setEventListeners()
+
+//Открыватор карточки
+function handleCardClick(name, link) {
+    popupViewCard.open(name, link);
+}
+
+//Создаватор карточки
+function createCard({ name, link }) {
+    const card = new Card({ name, link }, cardTemplate, handleCardClick);
+    const newCard = card.getCard();
+    return newCard
+}
+
+//Добавлятор массива карточек
+const cardsList = new Section({
+    items: initialCards,
+    renderer: ({ name, link }) => {
+        const cardElement = createCard({ name, link });
+        cardsList.addItem(cardElement);
+    }
+}, cardContainer);
+cardsList.renderItems();
+
+
+//Открыватор и добавление новой карточки
+const popupWithFormAddCard = new PopupWithForm(
+    '.popup_addcard',
+    ({name, link}) => {
+        const cardElement = createCard({name, link});
+        cardsList.addItem(cardElement);
+    }
+)
+
+popupWithFormAddCard.setEventListeners();
+
+addButton.addEventListener('click', () => {
+    popupWithFormAddCard.open()
+});
+
+//Инфа о пользователе
+const userInfo = new UserInfo('.profile-info__name', '.profile-info__status');
+
+const popupWithFormProfile = new PopupWithForm(
+    '.popup_profile',
+    (data) => {
+        userInfo.setUserInfo(data.name, data.job)
+    }
+)
+
+popupWithFormProfile.setEventListeners();
+
+//Открыватор редактирования профиля
+editButton.addEventListener('click', function () {
+    const userData = userInfo.getUserInfo();
+    nameInput.value = userData.nameProfile;
+    jobInput.value = userData.jobProfile;
+    popupWithFormProfile.open();
+})
 
 //Включение валидации
 const validatorProfile = new FormValidator(document.querySelector('.form_profile'), selector);
