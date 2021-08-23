@@ -11,7 +11,6 @@ class Section {
 
   addItem(item) {
     this._container.prepend (item);
-    //console.log(item);
   }
 }
 export{Section}
