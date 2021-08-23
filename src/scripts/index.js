@@ -6,8 +6,6 @@ import { PopupWithForm } from './PopupWithForm.js';
 import { UserInfo } from './UserInfo.js';
 
 const editButton = document.querySelector('.profile-info__edit-button');
-const nameProfile = document.querySelector('.profile-info__name');
-const jobProfile = document.querySelector('.profile-info__status');
 const nameInput = document.querySelector('.popup__text_type_name');
 const jobInput = document.querySelector('.popup__text_type_status');
 const addButton = document.querySelector('.add-button');
@@ -98,8 +96,8 @@ const userInfo = new UserInfo('.profile-info__name', '.profile-info__status');
 
 const popupWithFormProfile = new PopupWithForm(
     '.popup_profile',
-    (data) => {
-        userInfo.setUserInfo(data.name, data.job)
+    ({name, job}) => {
+        userInfo.setUserInfo({name, job});
     }
 )
 
@@ -108,9 +106,10 @@ popupWithFormProfile.setEventListeners();
 //Открыватор редактирования профиля
 editButton.addEventListener('click', function () {
     const userData = userInfo.getUserInfo();
-    nameInput.value = userData.nameProfile;
-    jobInput.value = userData.jobProfile;
+    nameInput.value = userData.name;
+    jobInput.value = userData.job;
     popupWithFormProfile.open();
+    console.log(nameInput.value)
 })
 
 //Включение валидации
