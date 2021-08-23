@@ -1,3 +1,5 @@
+import './pages/index.css';
+
 import { Card } from '../scripts/Card.js'
 import { FormValidator } from '../scripts/FormValidator.js'
 import { PopupWithImage } from '../scripts/PopupWithImage.js'
@@ -88,7 +90,8 @@ const popupWithFormAddCard = new PopupWithForm(
 popupWithFormAddCard.setEventListeners();
 
 addButton.addEventListener('click', () => {
-    popupWithFormAddCard.open()
+    popupWithFormAddCard.open();
+    validatorAdd.resetValidation()
 });
 
 //Инфа о пользователе
