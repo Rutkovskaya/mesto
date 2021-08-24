@@ -1,5 +1,6 @@
-import './pages/index.css';
+import '../pages/index.css';
 
+import { initialCards } from '../utils/constants.js';
 import { Card } from '../components/Card.js'
 import { FormValidator } from '../components/FormValidator.js'
 import { PopupWithImage } from '../components/PopupWithImage.js'
@@ -14,32 +15,6 @@ const addButton = document.querySelector('.add-button');
 const cardContainer = document.querySelector('.photo-grid');
 const cardTemplate = document.querySelector('.card-template');
 
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
 
 //Настройка селекторов
 const selector = {
