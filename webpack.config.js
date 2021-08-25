@@ -12,11 +12,14 @@ module.exports = {
             publicPath: ''
       },
       mode: 'development',
-      devServer: {
-        contentBase: path.resolve(__dirname, './dist'),
-        compress: true,
-        port: 8080,
-        open: true
+      devServer: { 
+        static: { 
+          directory: path.resolve(__dirname, "static"), 
+          staticOptions: {}, 
+          publicPath: "/static-public-path/", 
+          serveIndex: true, 
+          watch: true, 
+        }, 
       },
       module: {
         rules: [{        
