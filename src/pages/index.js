@@ -7,6 +7,7 @@ import { PopupWithImage } from '../components/PopupWithImage.js'
 import { Section } from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
+import { Api } from '../components/Api.js';
 
 const editButton = document.querySelector('.profile-info__edit-button');
 const nameInput = document.querySelector('.popup__text_type_name');
@@ -15,6 +16,13 @@ const addButton = document.querySelector('.add-button');
 const cardContainer = document.querySelector('.photo-grid');
 const cardTemplate = document.querySelector('.card-template');
 
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-27',
+    headers: {
+        authorization: '9db5a196-f915-4749-a277-679c835c6874',
+        'Content-Type': 'application/json'
+    }
+});
 
 //Настройка селекторов
 const selector = {
@@ -43,23 +51,33 @@ function createCard({ name, link }) {
 }
 
 //Добавлятор массива карточек
-const cardsList = new Section({
-    items: initialCards,
-    renderer: ({ name, link }) => {
-        const cardElement = createCard({ name, link });
-        cardsList.addItem(cardElement);
-    }
-}, cardContainer);
-cardsList.renderItems();
+api.getInitialCards()
+    .then((data) => {
+        const cardsList = new Section({
+            items: data,
+            renderer: ({ name, link }) => {
+                const cardElement = createCard({ name, link });
+                cardsList.addItem(cardElement);
+            }
+        }, cardContainer);
+        cardsList.renderItems();
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 
 
 //Открыватор и добавление новой карточки
 const popupWithFormAddCard = new PopupWithForm(
     '.popup_addcard',
-    ({name, link}) => {
-        const cardElement = createCard({name, link});
-        cardsList.addItem(cardElement);
-    }
+    api.sendNewCard()
+        .then(({ name, link }) => {
+            const cardElement = createCard({ name, link });
+            cardsList.addItem(cardElement);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 )
 
 popupWithFormAddCard.setEventListeners();
@@ -74,9 +92,13 @@ const userInfo = new UserInfo('.profile-info__name', '.profile-info__status');
 
 const popupWithFormProfile = new PopupWithForm(
     '.popup_profile',
-    ({name, job}) => {
-        userInfo.setUserInfo({name, job});
-    }
+    api.editUserInfo()
+        .then(({ name, about }) => {
+            userInfo.setUserInfo({ name, about });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 )
 
 popupWithFormProfile.setEventListeners();

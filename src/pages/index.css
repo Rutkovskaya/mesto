@@ -30,7 +30,8 @@
 @import url(../blocks/card/__under-line/card__under-line.css);
 @import url(../blocks/card/__text/card__text.css);
 @import url(../blocks/card/__button/card__button.css);
-
+@import url(../blocks/hart-container/hart-container.css);
+@import url(../blocks/hart-counter/hart-counter.css);
 @import url(../blocks/hart-button/hart-button.css);
 @import url(../blocks/hart-button/_activ/hart-button_activ.css);
 @import url(../blocks/trash-button/trash-button.css);
