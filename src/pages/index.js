@@ -7,7 +7,7 @@ import { PopupWithImage } from '../components/PopupWithImage.js'
 import { Section } from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
-import { Api } from '../components/Api.js';
+import  {Api}  from '../components/Api.js';
 
 const editButton = document.querySelector('.profile-info__edit-button');
 const nameInput = document.querySelector('.popup__text_type_name');
@@ -16,13 +16,13 @@ const addButton = document.querySelector('.add-button');
 const cardContainer = document.querySelector('.photo-grid');
 const cardTemplate = document.querySelector('.card-template');
 
-const api = new Api({
+const api = new Api ({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-27',
     headers: {
         authorization: '9db5a196-f915-4749-a277-679c835c6874',
         'Content-Type': 'application/json'
     }
-});
+})
 
 //Настройка селекторов
 const selector = {
@@ -70,7 +70,7 @@ api.getInitialCards()
 //Открыватор и добавление новой карточки
 const popupWithFormAddCard = new PopupWithForm(
     '.popup_addcard',
-    api.sendNewCard()
+    api.sendNewCard({name, link})
         .then(({ name, link }) => {
             const cardElement = createCard({ name, link });
             cardsList.addItem(cardElement);
@@ -79,6 +79,14 @@ const popupWithFormAddCard = new PopupWithForm(
             console.log(err);
         })
 )
+
+/*const popupWithFormAddCard = new PopupWithForm(
+    '.popup_addcard',
+    ({name, link}) => {
+        const cardElement = createCard({name, link});
+        cardsList.addItem(cardElement);
+    }
+)*/
 
 popupWithFormAddCard.setEventListeners();
 
@@ -100,6 +108,15 @@ const popupWithFormProfile = new PopupWithForm(
             console.log(err);
         })
 )
+
+/*const popupWithFormProfile = new PopupWithForm(
+    '.popup_profile',
+    ({name, job}) => {
+        userInfo.setUserInfo({name, job});
+    }
+)*/
+
+
 
 popupWithFormProfile.setEventListeners();
 
