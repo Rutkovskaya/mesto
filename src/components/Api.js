@@ -12,8 +12,8 @@ class Api {
         return res.json()
     }
 
-    //1. Загрузка информации о пользователе с сервера
-    getUserInfo() {
+    //1. Загрузка информации о пользователе с сервера (выполнено)
+    getProfile() {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "GET",
             headers: this._headers,
@@ -21,7 +21,7 @@ class Api {
             .then(this._checkError);
     }
 
-    //2. Загрузка карточек с сервера
+    //2. Загрузка карточек с сервера (выполнено)
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
             method: "GET",
@@ -30,19 +30,19 @@ class Api {
             .then(this._checkError)
     }
 
-    //3. Редактирование профиля
-    editUserInfo(name, about) {
+    //3. Редактирование профиля (выполнено)
+    editUserInfo(data) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
-                name: name,
-                about: about
+                name: data.name,
+                about: data.about
             })
         }).then(this._checkError)
     }
 
-    //4. Добавление новой карточки
+    //4. Добавление новой карточки (выполнено)
     addNewCard({ name, link }) {
         return fetch(`${this._baseUrl}/cards`, {
             method: "POST",

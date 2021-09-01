@@ -7,7 +7,7 @@ import { PopupWithImage } from '../components/PopupWithImage.js'
 import { Section } from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
-import  {Api}  from '../components/Api.js';
+import { Api } from '../components/Api.js';
 
 const editButton = document.querySelector('.profile-info__edit-button');
 const nameInput = document.querySelector('.popup__text_type_name');
@@ -16,7 +16,7 @@ const addButton = document.querySelector('.add-button');
 const cardContainer = document.querySelector('.photo-grid');
 const cardTemplate = document.querySelector('.card-template');
 
-const api = new Api ({
+const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-27',
     headers: {
         authorization: '9db5a196-f915-4749-a277-679c835c6874',
@@ -35,6 +35,13 @@ const selector = {
     inputNotValidClass: 'popup__text_not-valid'
 }
 
+const cardsList = new Section({
+    renderer: ({ name, link }) => {
+        const cardElement = createCard({ name, link });
+        cardsList.addItem(cardElement);
+    }
+}, cardContainer);
+
 const popupViewCard = new PopupWithImage('.view-card');
 popupViewCard.setEventListeners()
 
@@ -50,43 +57,44 @@ function createCard({ name, link }) {
     return newCard
 }
 
+//Пока ломалка
+function loading(popupSelector, loading) {
+    const submitButton = popupSelector.querySelector('.popup__submit-btn');
+    if (loading) {
+        submitButton.textContent = 'Сохранение...'
+    }
+    else {
+        submitButton.textContent = 'Сохранить'
+    }
+}
+
 //Добавлятор массива карточек
 api.getInitialCards()
     .then((data) => {
-        const cardsList = new Section({
-            items: data,
-            renderer: ({ name, link }) => {
-                const cardElement = createCard({ name, link });
-                cardsList.addItem(cardElement);
-            }
-        }, cardContainer);
-        cardsList.renderItems();
+        cardsList.renderItems(data);
     })
     .catch((err) => {
         console.log(err);
     });
 
-
+const addCard = document.querySelector('.popup_addcard')
 //Открыватор и добавление новой карточки
 const popupWithFormAddCard = new PopupWithForm(
     '.popup_addcard',
-    api.addNewCard({name, link})
-        .then(({ name, link }) => {
-            const cardElement = createCard({ name, link });
-            cardsList.addItem(cardElement);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-)
-
-/*const popupWithFormAddCard = new PopupWithForm(
-    '.popup_addcard',
-    ({name, link}) => {
-        const cardElement = createCard({name, link});
-        cardsList.addItem(cardElement);
+    ({ name, link }) => {
+        //loading('.popup_addcard', true);
+        api.addNewCard({ name, link })
+            .then(({ name, link }) => {
+                const cardElement = createCard({ name, link });
+                cardsList.addItem(cardElement);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        //  .finally(() =>
+        //   loading('.popup_addcard', false))
     }
-)*/
+)
 
 popupWithFormAddCard.setEventListeners();
 
@@ -96,27 +104,31 @@ addButton.addEventListener('click', () => {
 });
 
 //Инфа о пользователе
-const userInfo = new UserInfo('.profile-info__name', '.profile-info__status');
+const userInfo = new UserInfo('.profile-info__name', '.profile-info__status', '.avatar');
+
+let userId;
+
+api.getProfile()
+    .then((data) => {
+        userId = data._id;
+        userInfo.setUserInfo(data);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
 
 const popupWithFormProfile = new PopupWithForm(
     '.popup_profile',
-    api.editUserInfo()
-        .then(({ name, about }) => {
-            userInfo.setUserInfo({ name, about });
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-)
-
-/*const popupWithFormProfile = new PopupWithForm(
-    '.popup_profile',
-    ({name, job}) => {
-        userInfo.setUserInfo({name, job});
+    (data) => {
+        api.editUserInfo(data)
+            .then((data) => {
+                userInfo.setUserInfo(data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
-)*/
-
-
+)
 
 popupWithFormProfile.setEventListeners();
 
@@ -126,7 +138,6 @@ editButton.addEventListener('click', function () {
     nameInput.value = userData.name;
     jobInput.value = userData.job;
     popupWithFormProfile.open();
-    console.log(nameInput.value)
 })
 
 //Включение валидации
