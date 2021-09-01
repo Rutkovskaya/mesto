@@ -70,7 +70,7 @@ api.getInitialCards()
 //Открыватор и добавление новой карточки
 const popupWithFormAddCard = new PopupWithForm(
     '.popup_addcard',
-    api.sendNewCard({name, link})
+    api.addNewCard({name, link})
         .then(({ name, link }) => {
             const cardElement = createCard({ name, link });
             cardsList.addItem(cardElement);

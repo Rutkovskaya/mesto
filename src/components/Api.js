@@ -60,16 +60,29 @@ class Api {
     //6. Попап удаления карточки
 
     //7. Удаление карточки
-
+    deleteCard(cardId) {
+        return fetch(`${this._url}/cards/${cardId}`, {
+          method: "DELETE",
+          headers: this._headers,
+        })
+          .then(this._checkError);
+      }
     //8. Постановка и снятие лайка
+    likeCard(cardId, isLiked) {
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
+          method: isLiked ? "DELETE" : "PUT",
+          headers: this._headers,
+        })
+          .then(this._checkError);
+      }
 
     //9. Обновление аватара пользователя
-    editAvatar(avatarLink) {
+    editAvatar(link) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
           method: "PATCH",
           headers: this._headers,
           body: JSON.stringify({
-            avatar: avatarLink
+            avatar: link
           })
         })
           .then(this._checkResponse);
