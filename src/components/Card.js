@@ -34,13 +34,15 @@ class Card {
 
     _setEventListeners() {
         //Удалятор карточек
-        this._cardRemoveButton.addEventListener('click', function () {
-            this._handleDeleteClick()
+        this._cardRemoveButton.addEventListener('click', () => {
+            this._handleDeleteClick();
         });
 
 
         //Лайкатор карточек
         this._hartButton.addEventListener('click', () => {
+            console.log("Лайкатор карточки работает");
+            
             this._handleLikeClick(this._cardId, this.isLiked)
                 .then((data) => {
                     this._hartButton.classList.toggle('hart-button_activ');
@@ -54,7 +56,7 @@ class Card {
 
         //Открыватор карточки
         this._selectCard.addEventListener('click', () => {
-            this._handleCardClick(this._name, this._link)
+            this._handleCardClick(this._name, this._link);
         });
     }
 
@@ -68,13 +70,14 @@ class Card {
     }
 
     deleteCard() {
+        //card.target.closest('.card').remove();
         this._element.remove();
         this._element = null;
     }
 
-    markUserLikes(card) {
+    iLike(card) {
         if (this._likes.some(person => person._id === this._userId)) {
-            this._buttonLike.classList.add('hart-button_activ');
+            this._hartButton.classList.add('hart-button_activ');
         }
     }
 
