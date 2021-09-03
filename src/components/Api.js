@@ -85,7 +85,7 @@ class Api {
             avatar: link
           })
         })
-          .then(this._checkResponse);
+          .then(this._checkError);
       }
 
     //10. Улучшенный UX всех форм

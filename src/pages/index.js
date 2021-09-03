@@ -7,6 +7,7 @@ import { Section } from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { Api } from '../components/Api.js';
+import { PopupTrash } from '../components/PopupTrash.js';
 
 const editButton = document.querySelector('.profile-info__edit-button');
 const avatarButton = document.querySelector('.avatar');
@@ -24,8 +25,6 @@ const api = new Api({
     }
 })
 
-
-
 //Настройка селекторов
 const selector = {
     inputSelector: '.popup__text',
@@ -41,28 +40,35 @@ const selector = {
 
 
 
+
 //Инфа о пользователе
 const userInfo = new UserInfo('.profile-info__name', '.profile-info__status', '.avatar');
 
 let userId;
 
-api.getProfile().then(
-    (data => {
-        userId = data._id;
-        userInfo.setUserInfo(data);       
-    })
-)
+api.getProfile()
+    .then(
+        (user => {
+            userId = user._id;
+            userInfo.setUserInfo(user);
+        })
+    )
     .catch((err) => {
         console.log(err);
-    })
+    });
 
-
+console.log(userId);
 
 
 
 //Создаватор карточки
 function createCard(data) {
-    const card = new Card(data, userId, cardTemplate, { handleCardClick, handleLikeClick, handleDeleteClick });
+    const card = new Card(
+        data,
+        userId,
+        cardTemplate,
+        { handleCardClick, handleLikeClick, handleDeleteClick }
+    );
     const newCard = card.getCard();
     card.markUserLikes(newCard);
     card.updateLikes(newCard);
@@ -76,14 +82,25 @@ function handleCardClick(card) {
 function handleLikeClick(cardId, isLiked) {
     return api.likeCard(cardId, isLiked)
 }
-function handleDeleteClick(card) {
-    const popupTrash = document.querySelector('.popup_trash');
-    popupTrash.card = card;
-    popupTrash.open()
+function handleDeleteClick() {
+    popupTrash.open();
     //card.target.closest('.card').remove();
 }
 
+const popupTrash = new PopupTrash('.popup_trash', deleteCard)
 
+function deleteCard() {
+    const cardId = popupTrash.card._cardId;
+    api.deleteCard(cardId)
+        .then(() => {
+            popupTrash.card.deleteCard();
+            popupTrash.close();
+            popupTrash.cardObject = '';
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
 
 const cardsList = new Section({
     renderer: (data) => {
@@ -98,18 +115,6 @@ popupViewCard.setEventListeners()
 
 
 
-
-//Пока ломалка
-function loading(popupSelector, loading) {
-    const submitButton = popupSelector.querySelector('.popup__submit-btn');
-    if (loading) {
-        submitButton.textContent = 'Сохранение...'
-    }
-    else {
-        submitButton.textContent = 'Сохранить'
-    }
-}
-
 //Добавлятор массива карточек
 api.getInitialCards()
     .then((data) => {
@@ -121,13 +126,22 @@ api.getInitialCards()
 
 
 
-
+function loading(popupSelector, loading) {
+    const popup = document.querySelector(popupSelector);
+    const submitButton = popup.querySelector('.popup__submit-btn');
+    if (loading) {
+        submitButton.textContent = 'Сохранение...'
+    }
+    else {
+        submitButton.textContent = 'Сохранить'
+    }
+}
 
 //Открыватор и добавление новой карточки
 const popupWithFormAddCard = new PopupWithForm(
     '.popup_addcard',
     (data) => {
-        //loading('.popup_addcard', true);
+        loading('.popup_addcard', true);
         api.addNewCard(data)
             .then((data) => {
                 const cardElement = createCard(data);
@@ -136,8 +150,8 @@ const popupWithFormAddCard = new PopupWithForm(
             .catch((err) => {
                 console.log(err);
             })
-        //  .finally(() =>
-        //   loading('.popup_addcard', false))
+            .finally(() =>
+                loading('.popup_addcard', false))
     }
 )
 
@@ -149,18 +163,11 @@ addButton.addEventListener('click', () => {
 });
 
 
-
-
-
-
-
-
-
-
 //Редактирование профиля
 const popupWithFormProfile = new PopupWithForm(
     '.popup_profile',
     (data) => {
+        loading('.popup_profile', true);
         api.editUserInfo(data)
             .then((res) => {
                 userInfo.setUserInfo(res);
@@ -168,6 +175,8 @@ const popupWithFormProfile = new PopupWithForm(
             .catch((err) => {
                 console.log(err);
             })
+            .finally(() =>
+                loading('.popup_profile', false))
     }
 )
 
@@ -187,14 +196,16 @@ editButton.addEventListener('click', function () {
 const popupWithFormAvatar = new PopupWithForm(
     '.popup_avatar',
     (data) => {
+        loading('.popup_avatar', true);
         api.editAvatar(data.avatarLink)
             .then((res) => {
                 userInfo.setUserInfo(res);
-                console.log(res);
             })
             .catch((err) => {
                 console.log(err);
             })
+            .finally(() =>
+                loading('.popup_avatar', false))
     }
 )
 
