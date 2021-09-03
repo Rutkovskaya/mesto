@@ -1,6 +1,6 @@
 class Card {
 
-    constructor(data, userId, template, {handleCardClick, handleLikeClick, handleDeleteClick}) {
+    constructor(data, userId, template, { handleCardClick, handleLikeClick, handleDeleteClick }) {
         this._name = data.name;
         this._link = data.link;
         this._ownerId = data.owner.id;
@@ -41,17 +41,18 @@ class Card {
 
         //Лайкатор карточек
         this._hartButton.addEventListener('click', () => {
-            console.log("Лайкатор карточки работает");
-            
-            this._handleLikeClick(this._cardId, this.isLiked)
-                .then((data) => {
+            this._handleLikeClick(this._cardId, this.liked)
+                .then(() => {
                     this._hartButton.classList.toggle('hart-button_activ');
-                    this.isLiked = !this.isLiked;
+                    this.liked = !this.liked;
                     this._hartCounter.textContent = data.likes.length;
+                    console.log(this._cardId, this.liked);
+                    
                 })
                 .catch((err) => {
                     console.log(err);
-                })
+                });
+
         });
 
         //Открыватор карточки
@@ -75,13 +76,14 @@ class Card {
         this._element = null;
     }
 
-    iLike(card) {
+
+    iLike() {
         if (this._likes.some(person => person._id === this._userId)) {
             this._hartButton.classList.add('hart-button_activ');
         }
     }
 
-    updateLikes(card) {
+    updateLikes() {
         this._hartCounter.textContent = this._likes.length;
     }
 }

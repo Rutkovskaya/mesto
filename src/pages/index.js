@@ -55,7 +55,7 @@ api.getProfile()
         console.log(err);
     });
 
-console.log(userId);
+//console.log(userId);
 
 
 
@@ -68,8 +68,8 @@ function createCard(data) {
         { handleCardClick, handleLikeClick, handleDeleteClick }
     );
     const newCard = card.getCard();
-    card.iLike(newCard);
-    card.updateLikes(newCard);
+    card.iLike();
+    card.updateLikes();
 
     return newCard
 }
@@ -77,11 +77,13 @@ function createCard(data) {
 function handleCardClick(name, link) {
     popupViewCard.open(name, link);
 }
-function handleLikeClick(cardId, isLiked) {
-    return api.likeCard(cardId, isLiked)
+
+function handleLikeClick(cardId, liked) {
+    console.log(cardId, liked);
+    return api.likeCard(cardId, liked)
 }
+
 function handleDeleteClick() {
-    console.log("Удалятор карточки работает");
     popupTrash.open();
 }
 

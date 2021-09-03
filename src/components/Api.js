@@ -55,41 +55,39 @@ class Api {
             .then(this._checkError)
     }
 
-    //5. Отображение количества лайков карточки
+    //5. Отображение количества лайков карточки (выполнено)
 
     //6. Попап удаления карточки
 
     //7. Удаление карточки
     deleteCard(cardId) {
         return fetch(`${this._url}/cards/${cardId}`, {
-          method: "DELETE",
-          headers: this._headers,
+            method: "DELETE",
+            headers: this._headers,
         })
-          .then(this._checkError);
-      }
+            .then(this._checkError);
+    }
     //8. Постановка и снятие лайка
-    likeCard(cardId, isLiked) {
+    likeCard(cardId, liked) {
+        console.log(cardId, liked);
         return fetch(`${this._url}/cards/likes/${cardId}`, {
-          method: isLiked ? "DELETE" : "PUT",
+          method: liked ? "DELETE" : "PUT",
           headers: this._headers,
         })
           .then(this._checkError);
       }
 
-    //9. Обновление аватара пользователя
+    //9. Обновление аватара пользователя (выполнено)
     editAvatar(link) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
-          method: "PATCH",
-          headers: this._headers,
-          body: JSON.stringify({
-            avatar: link
-          })
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: link
+            })
         })
-          .then(this._checkError);
-      }
-
-    //10. Улучшенный UX всех форм
-
+            .then(this._checkError);
+    }
 
 }
 

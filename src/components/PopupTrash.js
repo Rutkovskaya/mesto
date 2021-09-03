@@ -9,12 +9,10 @@ class PopupTrash extends Popup {
 
   _setEventListeners() {
     super._setEventListeners();
-    this._deleteCardButton.addEventListener('click', this._delete);
-  }
-
-  _delete = () => {
-    this._handleDelete();
-  }
+    this._deleteCardButton.addEventListener('click', () => {
+      this._handleDelete();
+    })
+  };
 
   open() {
     this._setEventListeners();
