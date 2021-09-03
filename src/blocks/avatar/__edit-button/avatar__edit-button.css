@@ -1,0 +1,17 @@
+.avatar__edit-button {
+  min-height: 26px;
+  min-width: 26px;
+  background: url('../../../images/Ava_Edit.png') transparent center no-repeat;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  margin: -13px -13px 0 0;
+  border: none;
+  padding: 0;
+  opacity: 0;
+}
+
+.avatar__edit-button:hover {
+  cursor: pointer;
+  opacity: 1;
+}

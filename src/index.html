@@ -14,7 +14,10 @@
 
     <main>
         <section class="profile">
-            <img src="<%=require('./images/image.jpg')%>" class="avatar" alt="Аватарка">
+            <div class="profile__avatar">
+                <button class="avatar__edit-button"></button>
+                <img class="avatar" src=" " alt="Аватарка">
+            </div>
             <div class="profile-info">
                 <div class="profile-info__block">
                     <h1 class="profile-info__name">Жак-Ив Кусто</h1>
@@ -77,6 +80,33 @@
                 <h2 class="view-card__heading"></h2>
             </div>
         </div>
+
+        <div class="popup popup_avatar">
+            <div class="popup__container popup__container_avatar">
+                <button type="reset" class="popup__close-btn popup__close-btn_avatar"></button>
+                <h2 class="popup__heading">Обновить аватар</h3>
+                    <form name="form" action="#" method="POST" class="form form_аvatar" novalidate>
+                        <section class="form__section">
+                            <input name="avatarLink" type="url" placeholder="Ссылка на новый аватар" value=""
+                                class="popup__text popup__text_type_url" required>
+                            <span class="popup__text-error" id="avatarLink-error"> </span>
+                        </section>
+                        <button type="submit"
+                            class="popup__submit-btn popup__submit-btn_avatar popup__submit-btn_inactive">Сохранить
+                        </button>
+                    </form>
+            </div>
+        </div>
+
+        <div class="popup popup_trash">
+            <div class="popup__container popup__container_trash">
+                <button type="reset" class="popup__close-btn popup__close-btn_trash"></button>
+                <h2 class="popup__heading">Вы уверены?</h3>
+                    <button type="button"
+                        class="popup__submit-btn popup__submit-btn_trash popup__submit-btn_inactive">Да</button>
+            </div>
+        </div>
+
 
         <section class="photo-grid">
 

@@ -1,5 +1,13 @@
 .avatar {
-    height: 120px;
     width: 120px;
-    border-radius: 100%;
-}
+    height: 120px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+    position: relative;
+    object-fit: cover;
+  }
+  
+  .avatar:hover {
+    opacity: 0.2;
+  }

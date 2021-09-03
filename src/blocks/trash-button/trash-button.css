@@ -11,6 +11,10 @@
     height: 19.3px;
 }
 
+.trash-button_hidden {
+    visibility: hidden;
+  }
+   
 .card__trash:hover {
     opacity: 0.5;
     transition: 1s ease-in-out;
