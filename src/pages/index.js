@@ -212,5 +212,5 @@ validatorProfile.enableValidation()
 const validatorAdd = new FormValidator(document.querySelector('.form_add'), selector);
 validatorAdd.enableValidation()
 
-const formAvatarValidation = new FormValidator(document.querySelector('.form_аva'), selector);
+const formAvatarValidation = new FormValidator(document.querySelector('.form__avatar'), selector);
 formAvatarValidation.enableValidation();
