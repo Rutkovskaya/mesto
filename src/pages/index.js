@@ -45,7 +45,6 @@ const selector = {
 const userInfo = new UserInfo('.profile-info__name', '.profile-info__status', '.avatar');
 
 let userId;
-
 api.getProfile()
     .then((user) => {
         userId = user._id;
@@ -55,7 +54,6 @@ api.getProfile()
         console.log(err);
     });
 
-//console.log(userId);
 
 
 
@@ -65,27 +63,35 @@ function createCard(data) {
         data,
         userId,
         cardTemplate,
-        { handleCardClick, handleLikeClick, handleDeleteClick }
-    );
-    const newCard = card.getCard();
-    card.iLike();
-    card.updateLikes();
+        {
+            handleCardClick: (name, link) => {
+                popupViewCard.open(name, link)
+            },
+            handleLikeClick: () => {
+                const resultApi = card.likedCard() ? api.dislikeCard(card.getIdCard()) : api.likeCard(card.getIdCard());
+                resultApi.then(data => {
+                    card.setHart(data.likes);
+                    card.renderHart()
+            
+                  }).catch((err) => {
+                    console.log(err);
+                  })
+            },
+            handleDeleteClick: () => {
+                popupTrash.open(newCard)
 
+            }
+        }
+    );
+
+    
+
+    const newCard = card.getCard();
     return newCard
 }
 
-function handleCardClick(name, link) {
-    popupViewCard.open(name, link);
-}
 
-function handleLikeClick(cardId, liked) {
-    console.log(cardId, liked);
-    return api.likeCard(cardId, liked)
-}
 
-function handleDeleteClick() {
-    popupTrash.open();
-}
 
 const cardsList = new Section({
     renderer: (data) => {
@@ -222,5 +228,3 @@ validatorAdd.enableValidation()
 
 const formAvatarValidation = new FormValidator(document.querySelector('.form_аvatar'), selector);
 formAvatarValidation.enableValidation();
-
-export { handleCardClick }

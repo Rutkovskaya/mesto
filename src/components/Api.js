@@ -61,21 +61,26 @@ class Api {
 
     //7. Удаление карточки
     deleteCard(cardId) {
-        return fetch(`${this._url}/cards/${cardId}`, {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: "DELETE",
             headers: this._headers,
         })
             .then(this._checkError);
     }
     //8. Постановка и снятие лайка
-    likeCard(cardId, liked) {
-        console.log(cardId, liked);
-        return fetch(`${this._url}/cards/likes/${cardId}`, {
-          method: liked ? "DELETE" : "PUT",
-          headers: this._headers,
-        })
-          .then(this._checkError);
-      }
+    likeCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+            method: 'PUT',
+            headers: this._headers
+        }).then(this._checkError)
+    }
+
+    dislikeCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers
+        }).then(this._checkError)
+    }
 
     //9. Обновление аватара пользователя (выполнено)
     editAvatar(link) {

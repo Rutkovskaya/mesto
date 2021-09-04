@@ -26,6 +26,7 @@ class Card {
         this._selectCard.src = this._link;
         this._selectCard.alt = this._name;
 
+        this.renderHart();
         this._deletePossibility();
         this._setEventListeners();
 
@@ -41,18 +42,7 @@ class Card {
 
         //Лайкатор карточек
         this._hartButton.addEventListener('click', () => {
-            this._handleLikeClick(this._cardId, this.liked)
-                .then(() => {
-                    this._hartButton.classList.toggle('hart-button_activ');
-                    this.liked = !this.liked;
-                    this._hartCounter.textContent = data.likes.length;
-                    console.log(this._cardId, this.liked);
-                    
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-
+            this._handleLikeClick();
         });
 
         //Открыватор карточки
@@ -77,14 +67,33 @@ class Card {
     }
 
 
-    iLike() {
-        if (this._likes.some(person => person._id === this._userId)) {
-            this._hartButton.classList.add('hart-button_activ');
+    getIdCard() {
+        return this._cardId
+    }
+
+    likedCard() {
+        return this._likes.some(like => {
+            return like._id === this._userId
+        })
+    }
+
+    _showHart() {
+        if (this.likedCard(this._userId)) {
+            this._hartButton.classList.add('hart-button_activ')
+        } else {
+            this._hartButton.classList.remove('hart-button_activ')
         }
     }
 
-    updateLikes() {
-        this._hartCounter.textContent = this._likes.length;
+
+    setHart(list) {
+        this._likes = list
     }
+
+    renderHart() {
+        this._hartCounter.textContent = this._likes.length
+        this._showHart(this._userId)
+    }
+
 }
 export { Card }
