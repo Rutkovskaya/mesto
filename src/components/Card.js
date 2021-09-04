@@ -3,7 +3,7 @@ class Card {
     constructor(data, userId, template, { handleCardClick, handleLikeClick, handleDeleteClick }) {
         this._name = data.name;
         this._link = data.link;
-        this._ownerId = data.owner.id;
+        this._ownerId = data.owner._id;
         this._cardId = data._id;
         this._likes = data.likes;
         this._userId = userId;
@@ -27,7 +27,7 @@ class Card {
         this._selectCard.alt = this._name;
 
         this.renderHart();
-        this._deletePossibility();
+        this._deletePossibility()
         this._setEventListeners();
 
         return this._newCard;
@@ -52,20 +52,14 @@ class Card {
     }
 
     _deletePossibility() {
-        if (this._userId !== this._ownerId) {
-            this._cardRemoveButton.classList.add('.trash-button_hidden')
-        }
-        else {
-            this._cardRemoveButton.classList.remove('.trash-button_hidden')
+        if (this._ownerId !== this._userId) {
+            this._cardRemoveButton.classList.add('trash-button_hidden')
         }
     }
 
     deleteCard() {
-        //card.target.closest('.card').remove();
-        this._element.remove();
-        this._element = null;
+        this._newCard.remove();
     }
-
 
     getIdCard() {
         return this._cardId
@@ -84,7 +78,6 @@ class Card {
             this._hartButton.classList.remove('hart-button_activ')
         }
     }
-
 
     setHart(list) {
         this._likes = list

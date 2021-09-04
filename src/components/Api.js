@@ -12,7 +12,7 @@ class Api {
         return res.json()
     }
 
-    //1. Загрузка информации о пользователе с сервера (выполнено)
+    //Загрузка информации о пользователе с сервера
     getProfile() {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "GET",
@@ -21,7 +21,7 @@ class Api {
             .then(this._checkError);
     }
 
-    //2. Загрузка карточек с сервера (выполнено)
+    //Загрузка карточек с сервера
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
             method: "GET",
@@ -30,7 +30,7 @@ class Api {
             .then(this._checkError)
     }
 
-    //3. Редактирование профиля (выполнено)
+    //Редактирование профиля
     editUserInfo(data) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "PATCH",
@@ -42,7 +42,7 @@ class Api {
         }).then(this._checkError)
     }
 
-    //4. Добавление новой карточки (выполнено)
+    //Добавление новой карточки
     addNewCard(data) {
         return fetch(`${this._baseUrl}/cards`, {
             method: "POST",
@@ -55,11 +55,7 @@ class Api {
             .then(this._checkError)
     }
 
-    //5. Отображение количества лайков карточки (выполнено)
-
-    //6. Попап удаления карточки
-
-    //7. Удаление карточки
+    //Удаление карточки
     deleteCard(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: "DELETE",
@@ -67,7 +63,7 @@ class Api {
         })
             .then(this._checkError);
     }
-    //8. Постановка и снятие лайка
+    //Постановка и снятие лайка
     likeCard(cardId) {
         return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
             method: 'PUT',
@@ -82,7 +78,7 @@ class Api {
         }).then(this._checkError)
     }
 
-    //9. Обновление аватара пользователя (выполнено)
+    //Обновление аватара пользователя
     editAvatar(link) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: "PATCH",

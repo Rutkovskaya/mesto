@@ -36,12 +36,7 @@ const selector = {
     inputNotValidClass: 'popup__text_not-valid'
 }
 
-
-
-
-
-
-//Инфа о пользователе
+//Информатор о пользователе
 const userInfo = new UserInfo('.profile-info__name', '.profile-info__status', '.avatar');
 
 let userId;
@@ -53,9 +48,6 @@ api.getProfile()
     .catch((err) => {
         console.log(err);
     });
-
-
-
 
 //Создаватор карточки
 function createCard(data) {
@@ -72,37 +64,30 @@ function createCard(data) {
                 resultApi.then(data => {
                     card.setHart(data.likes);
                     card.renderHart()
-            
-                  }).catch((err) => {
+
+                }).catch((err) => {
                     console.log(err);
-                  })
+                })
             },
             handleDeleteClick: () => {
-                popupTrash.open(newCard)
+                popupTrash.open(card)
 
             }
         }
     );
 
-    
-
     const newCard = card.getCard();
     return newCard
 }
 
-
-
-
+//Добавлятор в большую коробку карточек
 const cardsList = new Section({
     renderer: (data) => {
         const cardElement = createCard(data);
-        cardsList.addItem(cardElement);
+        cardsList.addItems(cardElement);
     }
 }, cardContainer);
 
-
-
-//Добавлятор массива карточек
 api.getInitialCards()
     .then((data) => {
         cardsList.renderItems(data);
@@ -112,7 +97,7 @@ api.getInitialCards()
     });
 
 
-//Улучшенный UX всех форм
+//Улучшатор UX всех форм
 function loading(popupSelector, loading) {
     const popup = document.querySelector(popupSelector);
     const submitButton = popup.querySelector('.popup__submit-btn');
@@ -124,28 +109,29 @@ function loading(popupSelector, loading) {
     }
 }
 
-
 //Просмотр карточки
 const popupViewCard = new PopupWithImage('.view-card');
 popupViewCard.setEventListeners()
 
-//Удаление карточки
-const popupTrash = new PopupTrash('.popup_trash', deleteCard)
+//Удалятор карточки
+const popupTrash = new PopupTrash('.popup_trash', (e, card) => {
+    handleDelete(e, card)
+  })
+  popupTrash.setEventListeners()
 
-function deleteCard() {
-    const cardId = popupTrash.card._cardId;
-    api.deleteCard(cardId)
-        .then(() => {
-            popupTrash.card.deleteCard();
-            popupTrash.close();
-            popupTrash.cardObject = '';
-        })
-        .catch(err => {
-            console.log(err);
-        })
-}
+  const handleDelete = (e, card) => {
+    e.preventDefault();
+    api.deleteCard(card.getIdCard())
+      .then(response => {
+        card.deleteCard()
+        popupTrash.close()
+      })
+      .catch((err) => {
+      console.log(err);
+    });
+  }
 
-//Добавление новой карточки
+//Добавлятор новой карточки
 const popupWithFormAddCard = new PopupWithForm(
     '.popup_addcard',
     (data) => {
@@ -219,7 +205,7 @@ avatarButton.addEventListener('click', function () {
 
 popupWithFormAvatar.setEventListeners();
 
-//Включение валидации
+//Включатор валидации
 const validatorProfile = new FormValidator(document.querySelector('.form_profile'), selector);
 validatorProfile.enableValidation()
 

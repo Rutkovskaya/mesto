@@ -5,17 +5,20 @@ class PopupTrash extends Popup {
     super(popupSelector);
     this._handleDelete = handleDelete;
     this._deleteCardButton = this._popupElement.querySelector('.popup__submit-btn_trash');
+    this._defaultTrashButtonText = this._deleteCardButton.textContent
   }
 
-  _setEventListeners() {
-    super._setEventListeners();
-    this._deleteCardButton.addEventListener('click', () => {
-      this._handleDelete();
+  setEventListeners() {
+    super.setEventListeners();
+    this._popupElement.addEventListener('submit', (e) => {
+      e.preventDefault()
+      this._handleDelete(e, this._card)
+      this.close()
     })
   };
 
-  open() {
-    this._setEventListeners();
+  open(card) {
+    this._card = card
     super.open();
   }
 }

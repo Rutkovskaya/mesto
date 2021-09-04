@@ -1,5 +1,5 @@
 class Section {
-  constructor({renderer }, containerSelector) {
+  constructor({ renderer }, containerSelector) {
     this._renderer = renderer;
     this._container = containerSelector;
   }
@@ -10,6 +10,10 @@ class Section {
 
   addItem(item) {
     this._container.prepend(item);
+  }
+
+  addItems(item) {
+    this._container.append(item);
   }
 }
 
