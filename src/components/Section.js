@@ -8,11 +8,11 @@ class Section {
     items.forEach(item => this._renderer(item));
   }
 
-  addItem(item) {
+  prependItem(item) {
     this._container.prepend(item);
   }
 
-  addItems(item) {
+  appendItem(item) {
     this._container.append(item);
   }
 }

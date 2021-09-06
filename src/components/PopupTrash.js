@@ -13,7 +13,6 @@ class PopupTrash extends Popup {
     this._popupElement.addEventListener('submit', (e) => {
       e.preventDefault()
       this._handleDelete(e, this._card)
-      this.close()
     })
   };
 

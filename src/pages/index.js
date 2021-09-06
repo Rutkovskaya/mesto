@@ -8,6 +8,7 @@ import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { Api } from '../components/Api.js';
 import { PopupTrash } from '../components/PopupTrash.js';
+import { renderLoading } from '../utils/renderLoading.js';
 
 const editButton = document.querySelector('.profile-info__edit-button');
 const avatarButton = document.querySelector('.avatar');
@@ -26,7 +27,7 @@ const api = new Api({
 })
 
 //Настройка селекторов
-const selector = {
+const validationConfig = {
     inputSelector: '.popup__text',
     submitButtonSelector: '.popup__submit-btn',
     inactiveButtonClass: 'popup__submit-btn_inactive',
@@ -40,14 +41,16 @@ const selector = {
 const userInfo = new UserInfo('.profile-info__name', '.profile-info__status', '.avatar');
 
 let userId;
-api.getProfile()
-    .then((user) => {
-        userId = user._id;
-        userInfo.setUserInfo(user);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+
+Promise.all([api.getProfile(), api.getInitialCards()])
+  .then(([user, data]) => {
+    userId = user._id;
+    userInfo.setUserInfo(user);
+    cardsList.renderItems(data)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 
 //Создаватор карточки
 function createCard(data) {
@@ -84,7 +87,7 @@ function createCard(data) {
 const cardsList = new Section({
     renderer: (data) => {
         const cardElement = createCard(data);
-        cardsList.addItems(cardElement);
+        cardsList.appendItem(cardElement);
     }
 }, cardContainer);
 
@@ -95,19 +98,6 @@ api.getInitialCards()
     .catch((err) => {
         console.log(err);
     });
-
-
-//Улучшатор UX всех форм
-function loading(popupSelector, loading) {
-    const popup = document.querySelector(popupSelector);
-    const submitButton = popup.querySelector('.popup__submit-btn');
-    if (loading) {
-        submitButton.textContent = 'Сохранение...'
-    }
-    else {
-        submitButton.textContent = 'Сохранить'
-    }
-}
 
 //Просмотр карточки
 const popupViewCard = new PopupWithImage('.view-card');
@@ -135,17 +125,18 @@ const popupTrash = new PopupTrash('.popup_trash', (e, card) => {
 const popupWithFormAddCard = new PopupWithForm(
     '.popup_addcard',
     (data) => {
-        loading('.popup_addcard', true);
+        renderLoading('.popup_addcard', true);
         api.addNewCard(data)
             .then((data) => {
                 const cardElement = createCard(data);
-                cardsList.addItem(cardElement);
+                cardsList.prependItem(cardElement);
+                popupWithFormAddCard.close()
             })
             .catch((err) => {
                 console.log(err);
             })
             .finally(() =>
-                loading('.popup_addcard', false))
+            renderLoading('.popup_addcard', false))
     }
 )
 
@@ -160,16 +151,17 @@ addButton.addEventListener('click', () => {
 const popupWithFormProfile = new PopupWithForm(
     '.popup_profile',
     (data) => {
-        loading('.popup_profile', true);
+        renderLoading('.popup_profile', true);
         api.editUserInfo(data)
             .then((res) => {
-                userInfo.setUserInfo(res);
+                userInfo.setUserInfo(res)
+                popupWithFormProfile.close()
             })
             .catch((err) => {
-                console.log(err);
+                console.log(err)
             })
             .finally(() =>
-                loading('.popup_profile', false))
+            renderLoading('.popup_profile', false))
     }
 )
 
@@ -186,16 +178,17 @@ editButton.addEventListener('click', function () {
 const popupWithFormAvatar = new PopupWithForm(
     '.popup_avatar',
     (data) => {
-        loading('.popup_avatar', true);
+        renderLoading('.popup_avatar', true);
         api.editAvatar(data.avatarLink)
             .then((res) => {
                 userInfo.setUserInfo(res);
+                popupWithFormAvatar.close()
             })
             .catch((err) => {
                 console.log(err);
             })
             .finally(() =>
-                loading('.popup_avatar', false))
+            renderLoading('.popup_avatar', false))
     }
 )
 
@@ -206,11 +199,11 @@ avatarButton.addEventListener('click', function () {
 popupWithFormAvatar.setEventListeners();
 
 //Включатор валидации
-const validatorProfile = new FormValidator(document.querySelector('.form_profile'), selector);
+const validatorProfile = new FormValidator(document.querySelector('.form_profile'), validationConfig);
 validatorProfile.enableValidation()
 
-const validatorAdd = new FormValidator(document.querySelector('.form_add'), selector);
+const validatorAdd = new FormValidator(document.querySelector('.form_add'), validationConfig);
 validatorAdd.enableValidation()
 
-const formAvatarValidation = new FormValidator(document.querySelector('.form_ava'), selector);
+const formAvatarValidation = new FormValidator(document.querySelector('.form_ava'), validationConfig);
 formAvatarValidation.enableValidation();
